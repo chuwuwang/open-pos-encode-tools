@@ -16,14 +16,14 @@ import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.theme.WhiteColor
 
 @Composable
-fun drawerView(modifier: Modifier) {
+fun drawerView(modifier: Modifier, onClick: (state: MenuState) -> Unit) {
     Column(modifier) {
         Button(
             modifier = Modifier.fillMaxWidth().height(56.dp),
             colors = ButtonDefaults.buttonColors(WhiteColor),
             elevation = ButtonDefaults.elevation(0.dp),
             shape = RoundedCornerShape(0.dp),
-            onClick = {}
+            onClick = { onClick(MenuState.Aes) }
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth().padding(16.dp, 0.dp),
@@ -39,7 +39,7 @@ fun drawerView(modifier: Modifier) {
             colors = ButtonDefaults.buttonColors(WhiteColor),
             elevation = ButtonDefaults.elevation(0.dp),
             shape = RoundedCornerShape(0.dp),
-            onClick = {}
+            onClick = { onClick(MenuState.Des3Des) }
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth().padding(16.dp, 0.dp),
@@ -48,4 +48,9 @@ fun drawerView(modifier: Modifier) {
             )
         }
     }
+}
+
+sealed class MenuState  {
+    object Aes : MenuState()
+    object Des3Des : MenuState()
 }
