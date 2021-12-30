@@ -16,4 +16,22 @@ object Strings {
     val des3des_3des: String
         get() = "3DES"
 
+    val mode: String
+        get() = "Mode"
+    val mode_ECB: String
+        get() = "ECB"
+    val mode_CBC: String
+        get() = "CBC"
+    val mode_CFB: String
+        get() = "CFB"
+
+    val padding: String
+        get() = "Padding"
+    val padding_No: String
+        get() = "NoPadding"
+    val padding_PKCS5: String
+        get() = "PKCS5Padding"
+    val padding_PKCS7: String
+        get() = "PKCS7Padding"
+
 }

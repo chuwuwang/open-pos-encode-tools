@@ -15,6 +15,7 @@ val transparentColor_black80 = Color(0xCC000000)
 val transparentColor_black90 = Color(0xE5000000)
 
 val primaryColor = Color(0xFF3489FF)
+val primaryColor_white70 = Color(0x4C3489FF)
 
 val lineColor = Color(0xFFD7D7D7)
 
