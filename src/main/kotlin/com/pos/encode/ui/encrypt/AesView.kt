@@ -10,14 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pos.encode.ui.theme.LineColor
 import com.pos.encode.ui.theme.Strings
-import com.pos.encode.ui.theme.WhiteColor
-import com.pos.encode.ui.theme.greenColor
+import com.pos.encode.ui.theme.primaryColor
+import com.pos.encode.ui.theme.titleColor
+import com.pos.encode.ui.theme.transparentColor
 import com.pos.encode.ui.widget.whiteRectangleButton
 
 @Composable
@@ -25,58 +23,32 @@ fun aesView(modifier: Modifier = Modifier) {
     val selectTab = remember { mutableStateOf(AesView.AES_128) }
     Column(modifier) {
         Row {
-            val subModifier = Modifier.weight(1.0f)
-            Column(subModifier) {
-                whiteRectangleButton(
-                    modifier = Modifier.height(56.dp).fillMaxWidth(),
-                    onClick = {
-                        selectTab.value = AesView.AES_128
-                    }
-                ) {
-                    Text(
-                        fontSize = 16.sp,
-                        // fontWeight = textFontWeight(selectTab.value, AesView.AES_128),
-                        color = selectColor(selectTab.value, AesView.AES_128),
-                        text = Strings.aes_128
-                    )
-                }
-                Divider(
-                    Modifier.fillMaxWidth().height(3.dp),
-                    color = selectColor(selectTab.value, AesView.AES_128),
-                )
+            val sub = Modifier.weight(1.0f)
+            Column(sub) {
+                itemView(Strings.aes_128, selectTab.value, AesView.AES_128) { selectTab.value = AesView.AES_128 }
             }
-
-            Column(subModifier) {
-                whiteRectangleButton(
-                    modifier = Modifier.height(56.dp).fillMaxWidth(),
-                    onClick = {
-                        selectTab.value = AesView.AES_256
-                    }
-                ) {
-                    Text(
-                        fontSize = 16.sp,
-                        // fontWeight = textFontWeight(selectTab.value, AesView.AES_256),
-                        color = selectColor(selectTab.value, AesView.AES_256),
-                        text = Strings.aes_256
-                    )
-                }
-                Divider(
-                    Modifier.fillMaxWidth().height(3.dp),
-                    color = selectColor(selectTab.value, AesView.AES_256),
-                )
+            Column(sub) {
+                itemView(Strings.aes_256, selectTab.value, AesView.AES_256) { selectTab.value = AesView.AES_256 }
             }
         }
     }
 }
 
-private fun textFontWeight(tab: Int, currentTab: Int): FontWeight {
-    return if (tab == currentTab) FontWeight.Bold
-    else FontWeight.Normal
+@Composable
+private fun itemView(text: String, tab: Int, currentTab: Int, onClick: () -> Unit) {
+    whiteRectangleButton(modifier = Modifier.height(56.dp).fillMaxWidth(), onClick = onClick) {
+        Text(fontSize = 16.sp, color = titleColor, text = text)
+    }
+    divider(tab, currentTab)
 }
 
-private fun selectColor(tab: Int, currentTab: Int): Color {
-    return if (tab == currentTab) greenColor
-    else WhiteColor
+@Composable
+private fun divider(tab: Int, currentTab: Int) {
+    if (tab == currentTab) {
+        Divider(Modifier.fillMaxWidth().height(3.dp), color = primaryColor)
+    } else {
+        Divider(Modifier.fillMaxWidth().height(3.dp), color = transparentColor)
+    }
 }
 
 class AesView {

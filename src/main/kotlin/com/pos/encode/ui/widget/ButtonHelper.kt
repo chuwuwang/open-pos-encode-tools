@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.pos.encode.ui.theme.WhiteColor
+import com.pos.encode.ui.theme.whiteColor
 
 @Composable
 fun whiteRectangleButton(
@@ -31,7 +31,7 @@ fun whiteRectangleButton(
         elevation = ButtonDefaults.elevation(0.dp),
         shape = RoundedCornerShape(0.dp),
         border = border,
-        colors = ButtonDefaults.buttonColors(WhiteColor),
+        colors = ButtonDefaults.buttonColors(whiteColor),
         contentPadding = contentPadding,
         content = content
     )

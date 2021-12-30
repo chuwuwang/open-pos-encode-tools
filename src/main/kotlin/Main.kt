@@ -20,7 +20,7 @@ import com.pos.encode.ui.des.des3DesView
 import com.pos.encode.ui.dividerVerticalLightGray
 import com.pos.encode.ui.drawerView
 import com.pos.encode.ui.encrypt.aesView
-import com.pos.encode.ui.theme.WhiteColor
+import com.pos.encode.ui.theme.whiteColor
 
 @Composable
 @Preview
@@ -28,12 +28,12 @@ fun app() {
     val menuState =  remember { mutableStateOf<MenuState>(MenuState.Aes) }
     MaterialTheme {
         Row {
-            val leftModifier = Modifier.weight(1f).background(WhiteColor)
+            val leftModifier = Modifier.weight(1f).background(whiteColor)
             drawerView(leftModifier) { menuState.value = it }
 
             dividerVerticalLightGray()
 
-            val rightModifier = Modifier.weight(3f).background(WhiteColor).fillMaxHeight()
+            val rightModifier = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
             BoxWithConstraints(modifier = rightModifier) {
                 when (menuState.value) {
                     is MenuState.Aes -> aesView(rightModifier)
