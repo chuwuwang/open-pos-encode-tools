@@ -28,7 +28,7 @@ fun app() {
     val current = remember { mutableStateOf(0) }
     seaTheme {
         Row {
-            val leftModifier = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.tabBarBackground)
+            val leftModifier = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.drawerBarBackground)
             drawerBar(leftModifier, current.value) { current.value = it }
 
             dividerVerticalLightGray()

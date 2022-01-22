@@ -26,17 +26,31 @@ private val DefaultLocalColors = staticCompositionLocalOf { WeChat }
 
 @Stable
 class POSColors(
-    val tabBar: Color,
-    val tabBarBackground: Color,
+    val drawerBar: Color,
+    val drawerBarBackground: Color,
     val icon: Color,
-    val iconCurrent: Color,
+    val iconChecked: Color,
+    val topBar: Color,
+    val topBarBackground: Color,
+    val topBarText: Color,
+    val topBarTextChecked: Color,
+    val topBarDivider: Color,
+    val topBarDividerChecked: Color,
+    val divider: Color,
 )
 
 private val WeChat = POSColors(
-    tabBar = WeColor.green,
-    tabBarBackground = WeColor.black,
+    drawerBar = WeColor.green,
+    drawerBarBackground = WeColor.black,
     icon = whiteColor,
-    iconCurrent = WeColor.green,
+    iconChecked = WeColor.green,
+    topBar = WeColor.green,
+    topBarBackground = whiteColor,
+    topBarText = WeColor.black,
+    topBarTextChecked = WeColor.green,
+    topBarDivider = WeColor.green,
+    topBarDividerChecked = transparentColor,
+    divider = WeColor.gray,
 )
 
 @Composable
@@ -46,15 +60,29 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         else -> WeChat
     }
     val animationSpec = TweenSpec<Color>(durationMillis = 600)
-    val tabBar = animateColorAsState(targetColors.tabBar, animationSpec)
-    val tabBarBackground = animateColorAsState(targetColors.tabBarBackground, animationSpec)
+    val drawerBar = animateColorAsState(targetColors.drawerBar, animationSpec)
+    val drawerBarBackground = animateColorAsState(targetColors.drawerBarBackground, animationSpec)
     val icon = animateColorAsState(targetColors.icon, animationSpec)
-    val iconCurrent = animateColorAsState(targetColors.iconCurrent, animationSpec)
+    val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
+    val topBar = animateColorAsState(targetColors.topBar, animationSpec)
+    val topBarBackground = animateColorAsState(targetColors.topBarBackground, animationSpec)
+    val topBarText = animateColorAsState(targetColors.topBarText, animationSpec)
+    val topBarTextChecked = animateColorAsState(targetColors.topBarTextChecked, animationSpec)
+    val topBarDivider = animateColorAsState(targetColors.topBarDivider, animationSpec)
+    val topBarDividerChecked = animateColorAsState(targetColors.topBarDividerChecked, animationSpec)
+    val divider = animateColorAsState(targetColors.divider, animationSpec)
     val colors = POSColors(
-        tabBar = tabBar.value,
-        tabBarBackground = tabBarBackground.value,
+        drawerBar = drawerBar.value,
+        drawerBarBackground = drawerBarBackground.value,
         icon = icon.value,
-        iconCurrent = iconCurrent.value,
+        iconChecked = iconChecked.value,
+        topBar = topBar.value,
+        topBarBackground = topBarBackground.value,
+        topBarText = topBarText.value,
+        topBarTextChecked = topBarTextChecked.value,
+        topBarDivider = topBarDivider.value,
+        topBarDividerChecked = topBarDividerChecked.value,
+        divider = divider.value,
     )
     // Use the font family to define a custom typography
     val craneTypography = Typography(

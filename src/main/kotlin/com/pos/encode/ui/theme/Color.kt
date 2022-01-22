@@ -24,7 +24,10 @@ val titleColor = Color(0xFF000000)
 val contentColor = Color(0xFF666666)
 val descriptionColor = Color(0xFF999999)
 
+val white_color_f5f5f5 = Color(0xFFF5F5F5)
+
 object WeColor {
     val green = Color(0xFF1AB84E).convert(ColorSpaces.CieXyz)
     val black = Color(0xFF2E2E2E).convert(ColorSpaces.CieXyz)
+    val gray = Color(0xFFD7D7D7).convert(ColorSpaces.CieXyz)
 }
