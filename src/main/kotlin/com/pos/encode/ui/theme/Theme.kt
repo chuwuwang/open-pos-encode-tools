@@ -2,6 +2,8 @@ package com.pos.encode.ui.theme
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.TweenSpec
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Stable
@@ -38,7 +40,7 @@ private val WeChat = POSColors(
 )
 
 @Composable
-fun POSTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable () -> Unit) {
+fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable () -> Unit) {
     val targetColors = when (theme) {
         POSTheme.Theme.WeChat -> WeChat
         else -> WeChat
@@ -54,5 +56,12 @@ fun POSTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         icon = icon.value,
         iconCurrent = iconCurrent.value,
     )
-    CompositionLocalProvider(DefaultLocalColors provides colors, content = content)
+    // Use the font family to define a custom typography
+    val craneTypography = Typography(
+        defaultFontFamily = POSFontFamily,
+        /* ... */
+    )
+    CompositionLocalProvider(DefaultLocalColors provides colors) {
+        MaterialTheme(typography = craneTypography, content = content)
+    }
 }

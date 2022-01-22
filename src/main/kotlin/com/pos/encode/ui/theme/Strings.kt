@@ -16,6 +16,17 @@ object Strings {
     val des3des_3des: String
         get() = "3DES"
 
+    val hash: String
+        get() = "Hash"
+    val hash_md5: String
+        get() = "MD5"
+    val hash_sha_1: String
+        get() = "SHA-1"
+    val hash_sha_128: String
+        get() = "SHA-128"
+    val hash_sha_256: String
+        get() = "SHA-256"
+
     val mode: String
         get() = "Mode"
     val mode_ECB: String

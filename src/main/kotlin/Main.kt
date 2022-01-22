@@ -3,7 +3,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,26 +19,25 @@ import com.pos.encode.ui.drawerBar
 import com.pos.encode.ui.encrypt.aesView
 import com.pos.encode.ui.encrypt.des3DesView
 import com.pos.encode.ui.theme.POSTheme
+import com.pos.encode.ui.theme.seaTheme
 import com.pos.encode.ui.theme.whiteColor
 
 @Composable
 @Preview
 fun app() {
     val current = remember { mutableStateOf(0) }
-    MaterialTheme {
-        POSTheme {
-            Row {
-                val leftModifier = Modifier.weight(1f).background(POSTheme.colors.tabBarBackground)
-                drawerBar(leftModifier, current.value) { current.value = it }
+    seaTheme {
+        Row {
+            val leftModifier = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.tabBarBackground)
+            drawerBar(leftModifier, current.value) { current.value = it }
 
-                dividerVerticalLightGray()
+            dividerVerticalLightGray()
 
-                val rightModifier = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
-                BoxWithConstraints(modifier = rightModifier) {
-                    when (current.value) {
-                        0 -> aesView(rightModifier)
-                        1 -> des3DesView(rightModifier)
-                    }
+            val rightModifier = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
+            BoxWithConstraints(modifier = rightModifier) {
+                when (current.value) {
+                    0 -> aesView(rightModifier)
+                    1 -> des3DesView(rightModifier)
                 }
             }
         }
