@@ -1,6 +1,7 @@
 package com.pos.encode.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.colorspace.ColorSpaces
 
 val whiteColor = Color(0xFFFFFFFF)
 val blackColor = Color(0xFF000000)
@@ -23,3 +24,7 @@ val titleColor = Color(0xFF000000)
 val contentColor = Color(0xFF666666)
 val descriptionColor = Color(0xFF999999)
 
+object WeColor {
+    val green = Color(0xFF1AB84E).convert(ColorSpaces.CieXyz)
+    val black = Color(0xFF2E2E2E).convert(ColorSpaces.CieXyz)
+}

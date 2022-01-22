@@ -15,29 +15,31 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import com.pos.encode.ui.MenuState
-import com.pos.encode.ui.encrypt.des3DesView
 import com.pos.encode.ui.dividerVerticalLightGray
-import com.pos.encode.ui.drawerView
+import com.pos.encode.ui.drawerBar
 import com.pos.encode.ui.encrypt.aesView
+import com.pos.encode.ui.encrypt.des3DesView
+import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.whiteColor
 
 @Composable
 @Preview
 fun app() {
-    val menuState =  remember { mutableStateOf<MenuState>(MenuState.Aes) }
+    val current = remember { mutableStateOf(0) }
     MaterialTheme {
-        Row {
-            val leftModifier = Modifier.weight(1f).background(whiteColor)
-            drawerView(leftModifier) { menuState.value = it }
+        POSTheme {
+            Row {
+                val leftModifier = Modifier.weight(1f).background(POSTheme.colors.tabBarBackground)
+                drawerBar(leftModifier, current.value) { current.value = it }
 
-            dividerVerticalLightGray()
+                dividerVerticalLightGray()
 
-            val rightModifier = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
-            BoxWithConstraints(modifier = rightModifier) {
-                when (menuState.value) {
-                    is MenuState.Aes -> aesView(rightModifier)
-                    is MenuState.Des3Des -> des3DesView(rightModifier)
+                val rightModifier = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
+                BoxWithConstraints(modifier = rightModifier) {
+                    when (current.value) {
+                        0 -> aesView(rightModifier)
+                        1 -> des3DesView(rightModifier)
+                    }
                 }
             }
         }
@@ -46,12 +48,9 @@ fun app() {
 
 fun main() = application {
     Window(
-        title = "POS Encode Tools",
-        state = WindowState(
-            size = DpSize(1200.dp, 800.dp),
-            position = WindowPosition.Aligned(Alignment.Center)
-        ),
-        onCloseRequest = ::exitApplication
+        title = "POS Encode Tools", state = WindowState(
+            size = DpSize(1200.dp, 800.dp), position = WindowPosition.Aligned(Alignment.Center)
+        ), onCloseRequest = ::exitApplication
     ) {
         app()
     }

@@ -10,8 +10,37 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pos.encode.ui.theme.whiteColor
+
+@Composable
+fun posButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    elevation: Dp = 0.dp,
+    cornerRadius: Dp = 0.dp,
+    backgroundColor: Color = whiteColor,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    border: BorderStroke ? = null,
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    content: @Composable RowScope.() -> Unit
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        elevation = ButtonDefaults.elevation(elevation),
+        shape = RoundedCornerShape(cornerRadius),
+        border = border,
+        colors = ButtonDefaults.buttonColors(backgroundColor),
+        contentPadding = contentPadding,
+        content = content
+    )
+}
 
 @Composable
 fun whiteRectangleButton(
