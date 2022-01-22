@@ -14,10 +14,10 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import com.pos.encode.ui.dividerVerticalLightGray
 import com.pos.encode.ui.drawerBar
 import com.pos.encode.ui.encrypt.aesView
 import com.pos.encode.ui.encrypt.des3DesView
+import com.pos.encode.ui.encrypt.hashView
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.seaTheme
 import com.pos.encode.ui.theme.whiteColor
@@ -28,16 +28,14 @@ fun app() {
     val current = remember { mutableStateOf(0) }
     seaTheme {
         Row {
-            val leftModifier = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.drawerBarBackground)
-            drawerBar(leftModifier, current.value) { current.value = it }
-
-            dividerVerticalLightGray()
-
-            val rightModifier = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
-            BoxWithConstraints(modifier = rightModifier) {
+            val left = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.drawerBarBackground)
+            drawerBar(left, current.value) { current.value = it }
+            val right = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
+            BoxWithConstraints(modifier = right) {
                 when (current.value) {
-                    0 -> aesView(rightModifier)
-                    1 -> des3DesView(rightModifier)
+                    0 -> aesView(right)
+                    1 -> hashView(right)
+                    2 -> des3DesView(right)
                 }
             }
         }

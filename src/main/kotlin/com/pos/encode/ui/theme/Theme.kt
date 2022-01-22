@@ -48,8 +48,8 @@ private val WeChat = POSColors(
     topBarBackground = whiteColor,
     topBarText = WeColor.black,
     topBarTextChecked = WeColor.green,
-    topBarDivider = WeColor.green,
-    topBarDividerChecked = transparentColor,
+    topBarDivider = transparentColor,
+    topBarDividerChecked = WeColor.green,
     divider = WeColor.gray,
 )
 

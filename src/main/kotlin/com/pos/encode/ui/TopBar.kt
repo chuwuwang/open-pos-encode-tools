@@ -15,10 +15,12 @@ import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 
 @Composable
-fun topItem(modifier: Modifier, text: String, tint: Color, divider: Color, onClick: () -> Unit) {
+fun topItem(modifier: Modifier, text: String, index: Int, current: Int, onClick: () -> Unit) {
     BoxWithConstraints(modifier.fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
-        Text(textAlign = TextAlign.Center, color = tint, fontSize = 16.sp, text = text, fontFamily = boldFontFamily)
-        Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { topItemDivider(divider) }
+        val topBarText = getTopBarText(index, current)
+        val topBarDivider = getTopBarDivider(index, current)
+        Text(textAlign = TextAlign.Center, color = topBarText, fontSize = 16.sp, text = text, fontFamily = boldFontFamily)
+        Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { topItemDivider(topBarDivider) }
     }
 }
 
@@ -30,4 +32,14 @@ private fun topItemDivider(color: Color) {
 @Composable
 fun topBarDivider() {
     Divider(Modifier.fillMaxWidth().height(1.dp), color = POSTheme.colors.divider)
+}
+
+@Composable
+private fun getTopBarText(index: Int, current: Int): Color {
+    return if (current == index) POSTheme.colors.topBarTextChecked else POSTheme.colors.topBarText
+}
+
+@Composable
+private fun getTopBarDivider(index: Int, current: Int): Color {
+    return if (current == index) POSTheme.colors.topBarDividerChecked else POSTheme.colors.topBarDivider
 }
