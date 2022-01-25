@@ -43,11 +43,7 @@ fun app() {
 }
 
 fun main() = application {
-    Window(
-        title = "POS Encode Tools", state = WindowState(
-            size = DpSize(1200.dp, 800.dp), position = WindowPosition.Aligned(Alignment.Center)
-        ), onCloseRequest = ::exitApplication
-    ) {
+    Window(title = "POS Encode Tools", state = WindowState(size = DpSize(1400.dp, 1000.dp), position = WindowPosition.Aligned(Alignment.Center)), onCloseRequest = ::exitApplication) {
         app()
     }
 }

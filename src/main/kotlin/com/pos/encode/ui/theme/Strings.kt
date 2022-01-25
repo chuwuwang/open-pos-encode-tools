@@ -6,6 +6,12 @@ object Strings {
         get() = "Input Data"
     val data_output: String
         get() = "Output Data"
+    val data_format: String
+        get() = "Data Format"
+    val data_format_ascii: String
+        get() = "ASCII"
+    val data_format_hexadecimal: String
+        get() = "Hexadecimal"
 
     val aes: String
         get() = "AES"

@@ -15,6 +15,7 @@ import com.pos.encode.ui.theme.Strings
 @Composable
 fun hashView(modifier: Modifier) {
     val current = remember { mutableStateOf(0) }
+    val dataFormat = remember { mutableStateOf(0) }
     val inputText = remember { mutableStateOf("") }
     val outputText = remember { mutableStateOf("") }
     Column(modifier) {
@@ -37,13 +38,20 @@ fun hashView(modifier: Modifier) {
             }
         }
         topBarDivider()
+        modeSelectionWidget(Modifier.fillMaxWidth().padding(DP.padding, DP.topPadding, 56.dp, 0.dp), Strings.data_format) {
+            val padding = Modifier.height(DP.itemHeight).padding(0.dp, 10.dp, 0.dp, 0.dp)
+            Row(padding) {
+                modifierNew = Modifier.weight(1.0f).fillMaxHeight()
+                singleSelectButton(modifierNew, Strings.data_format_ascii, dataFormat.value == 1) { dataFormat.value = 1 }
+                singleSelectButton(modifierNew, Strings.data_format_hexadecimal, dataFormat.value == 0) { dataFormat.value = 0 }
+            }
+        }
         modifierNew = Modifier.weight(1.0f).padding(0.dp, DP.padding, 0.dp, 0.dp)
         dataInputTextField(modifierNew, Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
         dataInputTextField(modifierNew, Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
-        modifierNew = Modifier.fillMaxWidth().padding(120.dp, DP.padding, DP.padding, DP.bottomPadding)
+        modifierNew = Modifier.fillMaxWidth().padding(DP.padding, DP.padding, DP.padding, DP.bottomPadding)
         Row(modifierNew) {
             encryptButton { }
-            decryptButton { }
         }
     }
 }
