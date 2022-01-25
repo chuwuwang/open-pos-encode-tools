@@ -2,6 +2,11 @@ package com.pos.encode.ui.theme
 
 object Strings {
 
+    val data_input: String
+        get() = "Input Data"
+    val data_output: String
+        get() = "Output Data"
+
     val aes: String
         get() = "AES"
     val aes_128: String

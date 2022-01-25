@@ -15,3 +15,4 @@ private val heavyFont = Font("font/gy_heavy.ttf", FontWeight.W900)
 val POSFontFamily = FontFamily(lightFont, regularFont, mediumFont, boldFont)
 
 val boldFontFamily = FontFamily(boldFont)
+val mediumFontFamily = FontFamily(mediumFont)

@@ -36,6 +36,12 @@ class POSColors(
     val topBarTextChecked: Color,
     val topBarDivider: Color,
     val topBarDividerChecked: Color,
+    val contentText: Color,
+    val contentBackground: Color,
+    val border: Color,
+    val borderError: Color,
+    val borderChecked: Color,
+    val button: Color,
     val divider: Color,
 )
 
@@ -50,6 +56,12 @@ private val WeChat = POSColors(
     topBarTextChecked = WeColor.green,
     topBarDivider = transparentColor,
     topBarDividerChecked = WeColor.green,
+    contentText = WeColor.black,
+    contentBackground = whiteColor,
+    border = WeColor.gray,
+    borderError = WeColor.danger,
+    borderChecked = WeColor.success,
+    button = WeColor.green,
     divider = WeColor.gray,
 )
 
@@ -70,6 +82,12 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
     val topBarTextChecked = animateColorAsState(targetColors.topBarTextChecked, animationSpec)
     val topBarDivider = animateColorAsState(targetColors.topBarDivider, animationSpec)
     val topBarDividerChecked = animateColorAsState(targetColors.topBarDividerChecked, animationSpec)
+    val contentText = animateColorAsState(targetColors.contentText, animationSpec)
+    val contentBackground = animateColorAsState(targetColors.contentBackground, animationSpec)
+    val border = animateColorAsState(targetColors.border, animationSpec)
+    val borderError = animateColorAsState(targetColors.borderError, animationSpec)
+    val borderChecked = animateColorAsState(targetColors.borderChecked, animationSpec)
+    val button = animateColorAsState(targetColors.button, animationSpec)
     val divider = animateColorAsState(targetColors.divider, animationSpec)
     val colors = POSColors(
         drawerBar = drawerBar.value,
@@ -82,6 +100,12 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         topBarTextChecked = topBarTextChecked.value,
         topBarDivider = topBarDivider.value,
         topBarDividerChecked = topBarDividerChecked.value,
+        contentText = contentText.value,
+        contentBackground = contentBackground.value,
+        border = border.value,
+        borderError = borderError.value,
+        borderChecked = borderChecked.value,
+        button = button.value,
         divider = divider.value,
     )
     // Use the font family to define a custom typography
