@@ -30,7 +30,7 @@ fun app() {
         Row {
             val left = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.drawerBarBackground)
             drawerBar(left, current.value) { current.value = it }
-            val right = Modifier.weight(3f).background(whiteColor).fillMaxHeight()
+            val right = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.contentBackground)
             BoxWithConstraints(modifier = right) {
                 when (current.value) {
                     0 -> aesView(right)

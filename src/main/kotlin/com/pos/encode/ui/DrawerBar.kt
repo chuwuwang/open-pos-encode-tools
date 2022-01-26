@@ -45,6 +45,6 @@ fun drawerBar(modifier: Modifier, current: Int, onClick: (Int) -> Unit) {
 fun drawerItem(modifier: Modifier, text: String, resourcePath: String, tint: Color) {
     Row(modifier.fillMaxWidth().height(DP.drawerBarHeight).padding(DP.padding, 0.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
         Icon(painter = painterResource(resourcePath), contentDescription = null, modifier = Modifier.size(DP.iconSize), tint = tint)
-        Text(modifier = Modifier.padding(DP.padding, 0.dp, 0.dp, 0.dp), color = tint, textAlign = TextAlign.Start, fontSize = 16.sp, text = text, fontFamily = boldFontFamily)
+        Text(modifier = Modifier.padding(DP.padding, 0.dp, 0.dp, 0.dp), color = tint, textAlign = TextAlign.Start, fontSize = DP.titleSize, text = text, fontFamily = boldFontFamily)
     }
 }

@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 
@@ -19,7 +19,7 @@ fun topItem(modifier: Modifier, text: String, index: Int, current: Int, onClick:
     BoxWithConstraints(modifier.fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
         val topBarText = getTopBarText(index, current)
         val topBarDivider = getTopBarDivider(index, current)
-        Text(textAlign = TextAlign.Center, color = topBarText, fontSize = 16.sp, text = text, fontFamily = boldFontFamily)
+        Text(textAlign = TextAlign.Center, color = topBarText, fontSize = DP.contentSize, text = text, fontFamily = boldFontFamily)
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { topItemDivider(topBarDivider) }
     }
 }

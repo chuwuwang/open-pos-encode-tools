@@ -33,10 +33,12 @@ object Strings {
         get() = "MD5"
     val hash_sha_1: String
         get() = "SHA-1"
-    val hash_sha_128: String
-        get() = "SHA-128"
+    val hash_sha_224: String
+        get() = "SHA-224"
     val hash_sha_256: String
         get() = "SHA-256"
+    val hash_sha_384: String
+        get() = "SHA-384"
     val hash_sha_512: String
         get() = "SHA-512"
 
@@ -57,5 +59,19 @@ object Strings {
         get() = "PKCS5Padding"
     val padding_PKCS7: String
         get() = "PKCS7Padding"
+
+    val ok: String
+        get() = "OK"
+    val cancel: String
+        get() = "Cancel"
+    val yes: String
+        get() = "YES"
+    val no: String
+        get() = "NO"
+
+    val error: String
+        get() = "Error"
+    val error_data: String
+        get() = "Data error"
 
 }
