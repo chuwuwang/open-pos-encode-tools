@@ -24,13 +24,13 @@ fun hashView(modifier: Modifier) {
     Column(modifier) {
         var modifierNew = Modifier.fillMaxWidth().height(DP.topBarHeight).background(POSTheme.colors.topBarBackground)
         Row(modifierNew) {
-            topItem(Modifier.weight(1.0f), Strings.hash_md5, 0, current.value) { current.value = 0 }
-            topItem(Modifier.weight(1.0f), Strings.hash_sha_1, 1, current.value) { current.value = 1 }
-            topItem(Modifier.weight(1.0f), Strings.hash_sha_256, 3, current.value) { current.value = 3 }
-            topItem(Modifier.weight(1.0f), Strings.hash_sha_384, 2, current.value) { current.value = 2 }
-            topItem(Modifier.weight(1.0f), Strings.hash_sha_512, 4, current.value) { current.value = 4 }
+            TopBar.item(Modifier.weight(1.0f), Strings.hash_md5, 0, current.value) { current.value = 0 }
+            TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_1, 1, current.value) { current.value = 1 }
+            TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_256, 3, current.value) { current.value = 3 }
+            TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_384, 2, current.value) { current.value = 2 }
+            TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_512, 4, current.value) { current.value = 4 }
         }
-        topBarDivider()
+        TopBar.divider()
         modeSelectionWidget(Modifier.fillMaxWidth().padding(DP.padding, DP.topPadding, 56.dp, 0.dp), Strings.data_format) {
             val padding = Modifier.height(DP.itemHeight).padding(0.dp, 10.dp, 0.dp, 0.dp)
             Row(padding) {

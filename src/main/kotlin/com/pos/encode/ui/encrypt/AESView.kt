@@ -10,10 +10,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
-import com.pos.encode.ui.topBarDivider
-import com.pos.encode.ui.topItem
 
 @Composable
 fun aesView(modifier: Modifier) {
@@ -21,13 +20,13 @@ fun aesView(modifier: Modifier) {
     Column(modifier) {
         val modifierNew = Modifier.fillMaxWidth().height(56.dp).background(POSTheme.colors.topBarBackground)
         Row(modifierNew) {
-            topItem(Modifier.weight(1.0f), Strings.aes_128, 0, current.value) {
+            TopBar.item(Modifier.weight(1.0f), Strings.aes_128, 0, current.value) {
                 current.value = 0
             }
-            topItem(Modifier.weight(1.0f), Strings.aes_256, 1, current.value) {
+            TopBar.item(Modifier.weight(1.0f), Strings.aes_256, 1, current.value) {
                 current.value = 1
             }
         }
-        topBarDivider()
+        TopBar.divider()
     }
 }

@@ -34,8 +34,8 @@ object Strings {
     val hash_md5: String
         get() = "MD5"
 
-    val hash: String
-        get() = "HASH"
+    val hash_sha: String
+        get() = "SHA"
     val hash_sha_1: String
         get() = "SHA-1"
     val hash_sha_224: String

@@ -14,32 +14,36 @@ import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 
-@Composable
-fun topItem(modifier: Modifier, text: String, index: Int, current: Int, onClick: () -> Unit) {
-    BoxWithConstraints(modifier.fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
-        val topBarText = getTopBarText(index, current)
-        val topBarDivider = getTopBarDivider(index, current)
-        Text(textAlign = TextAlign.Center, color = topBarText, fontSize = DP.contentSize, text = text, fontFamily = boldFontFamily)
-        Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { topItemDivider(topBarDivider) }
+object TopBar {
+
+    @Composable
+    fun item(modifier: Modifier, text: String, index: Int, selectIndex: Int, onClick: () -> Unit) {
+        BoxWithConstraints(modifier.fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
+            val textColor = getTextColor(index, selectIndex)
+            val dividerColor = getDividerColor(index, selectIndex)
+            Text(textAlign = TextAlign.Center, color = textColor, fontSize = DP.contentSize, text = text, fontFamily = boldFontFamily)
+            Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { topItemDivider(dividerColor) }
+        }
     }
-}
 
-@Composable
-private fun topItemDivider(color: Color) {
-    Divider(Modifier.height(3.dp).width(80.dp), color = color)
-}
+    @Composable
+    private fun topItemDivider(color: Color) {
+        Divider(modifier = Modifier.height(3.dp).width(80.dp), color = color)
+    }
 
-@Composable
-fun topBarDivider() {
-    Divider(Modifier.fillMaxWidth().height(1.dp), color = POSTheme.colors.divider)
-}
+    @Composable
+    fun divider() {
+        Divider(modifier = Modifier.fillMaxWidth().height(1.dp), color = POSTheme.colors.divider)
+    }
 
-@Composable
-private fun getTopBarText(index: Int, current: Int): Color {
-    return if (current == index) POSTheme.colors.topBarTextChecked else POSTheme.colors.topBarText
-}
+    @Composable
+    private fun getTextColor(index: Int, selectIndex: Int): Color {
+        return if (selectIndex == index) POSTheme.colors.topBarTextChecked else POSTheme.colors.topBarText
+    }
 
-@Composable
-private fun getTopBarDivider(index: Int, current: Int): Color {
-    return if (current == index) POSTheme.colors.topBarDividerChecked else POSTheme.colors.topBarDivider
+    @Composable
+    private fun getDividerColor(index: Int, selectIndex: Int): Color {
+        return if (selectIndex == index) POSTheme.colors.topBarDividerChecked else POSTheme.colors.topBarDivider
+    }
+
 }

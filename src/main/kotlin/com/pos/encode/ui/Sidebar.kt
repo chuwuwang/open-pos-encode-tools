@@ -16,40 +16,45 @@ import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.theme.boldFontFamily
 
-object SidebarView {
+object Sidebar {
+
+    const val MENU_AES = 0
+    const val MENU_MD5 = 1
+    const val MENU_SHA = 2
+    const val MENU_DES = 3
 
     @Composable
-    fun sidebar(modifier: Modifier, current: Int, onClick: (Int) -> Unit) {
+    fun preview(modifier: Modifier, current: Int, onClick: (Int) -> Unit) {
         Column(modifier) {
-            drawerItem(
-                Modifier.clickable { onClick(0) },
+            itemView(
+                Modifier.clickable { onClick(MENU_AES) },
                 Strings.aes,
                 resourcePath = "images/ic_ago_aes_black.png",
-                if (current == 0) POSTheme.colors.iconChecked else POSTheme.colors.icon
+                if (current == MENU_AES) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
-            drawerItem(
-                Modifier.clickable { onClick(1) },
+            itemView(
+                Modifier.clickable { onClick(MENU_MD5) },
                 Strings.hash_md5,
                 resourcePath = "images/ic_ago_md5_black.png",
-                if (current == 1) POSTheme.colors.iconChecked else POSTheme.colors.icon
+                if (current == MENU_MD5) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
-            drawerItem(
-                Modifier.clickable { onClick(2) },
-                Strings.hash,
-                resourcePath = "images/ic_ago_md5_black.png",
-                if (current == 2) POSTheme.colors.iconChecked else POSTheme.colors.icon
+            itemView(
+                Modifier.clickable { onClick(MENU_SHA) },
+                Strings.hash_sha,
+                resourcePath = "images/ic_ago_sha_black.png",
+                if (current == MENU_SHA) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
-            drawerItem(
-                Modifier.clickable { onClick(3) },
+            itemView(
+                Modifier.clickable { onClick(MENU_DES) },
                 Strings.des3des,
                 resourcePath = "images/ic_ago_des_black.png",
-                if (current == 3) POSTheme.colors.iconChecked else POSTheme.colors.icon
+                if (current == MENU_DES) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
         }
     }
 
     @Composable
-    fun drawerItem(modifier: Modifier, text: String, resourcePath: String, tint: Color) {
+    private fun itemView(modifier: Modifier, text: String, resourcePath: String, tint: Color) {
         Row(modifier.fillMaxWidth().height(DP.drawerBarHeight).padding(DP.padding, 0.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(painter = painterResource(resourcePath), contentDescription = null, modifier = Modifier.size(DP.iconSize), tint = tint)
             Text(modifier = Modifier.padding(DP.padding, 0.dp, 0.dp, 0.dp), color = tint, textAlign = TextAlign.Start, fontSize = DP.titleSize, text = text, fontFamily = boldFontFamily)
