@@ -78,5 +78,7 @@ object Strings {
         get() = "Error"
     val error_data: String
         get() = "Data error"
+    val error_encryption_failed: String
+        get() = "Encryption failed"
 
 }

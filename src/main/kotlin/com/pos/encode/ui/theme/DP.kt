@@ -12,7 +12,6 @@ object DP {
     val topPadding = 24.dp
     val innerPadding = 8.dp
     val bottomPadding = 24.dp
-    val dialogPadding = 24.dp
 
     val iconSize = 24.dp
 
@@ -20,5 +19,11 @@ object DP {
     val contentSize = 16.sp
     val descriptionSize = 14.sp
     val letterSpacing = 4.sp
+
+    val radius = 4.dp
+
+    val dialogPadding = 24.dp
+    val dialogButtonWidth = 96.dp
+    val dialogButtonHeight = 48.dp
 
 }

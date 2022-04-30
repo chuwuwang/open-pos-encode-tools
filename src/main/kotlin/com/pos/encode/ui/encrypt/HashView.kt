@@ -12,6 +12,7 @@ import com.pos.encode.ui.helper.empty
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
+import com.pos.encode.ui.widget.DialogHelper
 
 @Composable
 fun hashView(modifier: Modifier) {
@@ -52,7 +53,7 @@ fun hashView(modifier: Modifier) {
                 }
             }
         }
-        errorDialog(Strings.error_data, hasDialog)
+        DialogHelper.errorDialog(Strings.error_data, hasDialog)
     }
 }
 

@@ -43,7 +43,9 @@ class POSColors(
     val borderChecked: Color,
     val button: Color,
     val divider: Color,
+
     val dialogBackground: Color,
+    val dialogText: Color,
 )
 
 private val WeChat = POSColors(
@@ -65,6 +67,7 @@ private val WeChat = POSColors(
     button = WeColor.green,
     divider = WeColor.gray,
     dialogBackground = whiteColor,
+    dialogText = whiteColor,
 )
 
 @Composable
@@ -92,6 +95,7 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
     val button = animateColorAsState(targetColors.button, animationSpec)
     val divider = animateColorAsState(targetColors.divider, animationSpec)
     val dialogBackground = animateColorAsState(targetColors.dialogBackground, animationSpec)
+    val dialogText = animateColorAsState(targetColors.dialogText, animationSpec)
     val colors = POSColors(
         drawerBar = drawerBar.value,
         drawerBarBackground = drawerBarBackground.value,
@@ -111,6 +115,7 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         button = button.value,
         divider = divider.value,
         dialogBackground = dialogBackground.value,
+        dialogText = dialogText.value,
     )
     // Use the font family to define a custom typography
     val craneTypography = Typography(
