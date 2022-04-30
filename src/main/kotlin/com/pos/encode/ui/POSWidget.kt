@@ -46,7 +46,7 @@ fun dataInputTextField(modifier: Modifier, text: String, value: String, maxLengt
                 modifier = Modifier.weight(1.0f).fillMaxHeight(),
                 value = value,
                 onValueChange = onValueChange,
-                textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = DP.contentSize, fontFamily = mediumFontFamily),
+                textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = DP.contentSize, fontFamily = mediumFontFamily, letterSpacing = DP.letterSpacing),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     textColor = POSTheme.colors.contentText,
                     cursorColor = POSTheme.colors.borderChecked,

@@ -19,4 +19,6 @@ object DP {
     val titleSize = 18.sp
     val contentSize = 16.sp
     val descriptionSize = 14.sp
+    val letterSpacing = 4.sp
+
 }
