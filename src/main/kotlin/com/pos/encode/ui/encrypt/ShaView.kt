@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.pos.encode.Algorithm
-import com.pos.encode.algorithm.MD5Util
+import com.pos.encode.algorithm.SHAUtil
 import com.pos.encode.ui.*
 import com.pos.encode.ui.helper.valid
 import com.pos.encode.ui.theme.DP
@@ -18,11 +18,13 @@ import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.util.ByteUtil
 
-object MD5View {
+object ShaView {
 
-    private const val MD2 = 0
-    private const val MD4 = 1
-    private const val MD5 = 2
+    private const val SHA_1 = 0
+    private const val SHA_224 = 1
+    private const val SHA_256 = 2
+    private const val SHA_384 = 3
+    private const val SHA_512 = 4
 
     @Suppress("DuplicatedCode")
     @Composable
@@ -35,9 +37,11 @@ object MD5View {
         Column(modifier) {
             var params = Modifier.fillMaxWidth().height(DP.topBarHeight).background(POSTheme.colors.topBarBackground)
             Row(params) {
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_md2, MD2, algorithmType.value) { algorithmType.value = MD2 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_md4, MD4, algorithmType.value) { algorithmType.value = MD4 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_md5, MD5, algorithmType.value) { algorithmType.value = MD5 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_1, SHA_1, algorithmType.value) { algorithmType.value = SHA_1 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_224, SHA_224, algorithmType.value) { algorithmType.value = SHA_224 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_256, SHA_256, algorithmType.value) { algorithmType.value = SHA_256 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_384, SHA_384, algorithmType.value) { algorithmType.value = SHA_384 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_512, SHA_512, algorithmType.value) { algorithmType.value = SHA_512 }
             }
             TopBar.divider()
             modeSelectionWidget(Modifier.fillMaxWidth().padding(DP.padding, DP.topPadding, 56.dp, 0.dp), Strings.data_format) {
@@ -76,14 +80,20 @@ object MD5View {
         }
         var result: ByteArray ? = null
         when (type) {
-            MD2 -> {
-                result = MD5Util.md2(dataBytes)
+            SHA_1 -> {
+                result = SHAUtil.sha1(dataBytes)
             }
-            MD4 -> {
-                result = MD5Util.md4(dataBytes)
+            SHA_224 -> {
+                result = SHAUtil.sha224(dataBytes)
             }
-            MD5 -> {
-                result = MD5Util.md5(dataBytes)
+            SHA_256 -> {
+                result = SHAUtil.sha256(dataBytes)
+            }
+            SHA_384 -> {
+                result = SHAUtil.sha384(dataBytes)
+            }
+            SHA_512 -> {
+                result = SHAUtil.sha512(dataBytes)
             }
         }
         if (result != null) {

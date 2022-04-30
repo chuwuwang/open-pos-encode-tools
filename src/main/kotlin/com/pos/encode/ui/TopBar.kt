@@ -22,18 +22,18 @@ object TopBar {
             val textColor = getTextColor(index, selectIndex)
             val dividerColor = getDividerColor(index, selectIndex)
             Text(textAlign = TextAlign.Center, color = textColor, fontSize = DP.contentSize, text = text, fontFamily = boldFontFamily)
-            Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { topItemDivider(dividerColor) }
+            Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) { itemDivider(dividerColor) }
         }
-    }
-
-    @Composable
-    private fun topItemDivider(color: Color) {
-        Divider(modifier = Modifier.height(3.dp).width(80.dp), color = color)
     }
 
     @Composable
     fun divider() {
         Divider(modifier = Modifier.fillMaxWidth().height(1.dp), color = POSTheme.colors.divider)
+    }
+
+    @Composable
+    private fun itemDivider(color: Color) {
+        Divider(modifier = Modifier.height(3.dp).width(80.dp), color = color)
     }
 
     @Composable

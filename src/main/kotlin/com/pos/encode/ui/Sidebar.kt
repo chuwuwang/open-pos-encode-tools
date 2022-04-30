@@ -24,31 +24,31 @@ object Sidebar {
     const val MENU_DES = 3
 
     @Composable
-    fun preview(modifier: Modifier, current: Int, onClick: (Int) -> Unit) {
+    fun preview(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
         Column(modifier) {
             itemView(
                 Modifier.clickable { onClick(MENU_AES) },
                 Strings.aes,
                 resourcePath = "images/ic_ago_aes_black.png",
-                if (current == MENU_AES) POSTheme.colors.iconChecked else POSTheme.colors.icon
+                if (index == MENU_AES) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
             itemView(
                 Modifier.clickable { onClick(MENU_MD5) },
                 Strings.hash_md5,
                 resourcePath = "images/ic_ago_md5_black.png",
-                if (current == MENU_MD5) POSTheme.colors.iconChecked else POSTheme.colors.icon
+                if (index == MENU_MD5) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
             itemView(
                 Modifier.clickable { onClick(MENU_SHA) },
                 Strings.hash_sha,
                 resourcePath = "images/ic_ago_sha_black.png",
-                if (current == MENU_SHA) POSTheme.colors.iconChecked else POSTheme.colors.icon
+                if (index == MENU_SHA) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
             itemView(
                 Modifier.clickable { onClick(MENU_DES) },
                 Strings.des3des,
                 resourcePath = "images/ic_ago_des_black.png",
-                if (current == MENU_DES) POSTheme.colors.iconChecked else POSTheme.colors.icon
+                if (index == MENU_DES) POSTheme.colors.iconChecked else POSTheme.colors.icon
             )
         }
     }

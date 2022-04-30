@@ -16,9 +16,9 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.ui.Sidebar
 import com.pos.encode.ui.encrypt.MD5View
+import com.pos.encode.ui.encrypt.ShaView
 import com.pos.encode.ui.encrypt.aesView
 import com.pos.encode.ui.encrypt.des3DesView
-import com.pos.encode.ui.encrypt.hashView
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.seaTheme
 
@@ -28,14 +28,15 @@ fun app() {
     val current = remember { mutableStateOf(0) }
     seaTheme {
         Row {
-            val left = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.drawerBarBackground)
-            Sidebar.preview(left, current.value) { current.value = it }
+            Sidebar.preview(Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.drawerBarBackground), current.value) {
+                current.value = it
+            }
             val right = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.contentBackground)
             BoxWithConstraints(modifier = right) {
                 when (current.value) {
                     Sidebar.MENU_AES -> aesView(right)
-                    Sidebar.MENU_MD5 ->  MD5View.preview(right)
-                    Sidebar.MENU_SHA -> hashView(right)
+                    Sidebar.MENU_MD5 -> MD5View.preview(right)
+                    Sidebar.MENU_SHA -> ShaView.preview(right)
                     Sidebar.MENU_DES -> des3DesView(right)
                 }
             }
