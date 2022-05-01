@@ -28,7 +28,7 @@ object TopBar {
 
     @Composable
     fun divider() {
-        Divider(modifier = Modifier.fillMaxWidth().height(1.dp), color = POSTheme.colors.divider)
+        Divider(modifier = Modifier.fillMaxWidth().height(DP.dividerHeight), color = POSTheme.colors.divider)
     }
 
     @Composable

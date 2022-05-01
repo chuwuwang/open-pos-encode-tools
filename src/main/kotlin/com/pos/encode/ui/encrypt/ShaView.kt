@@ -12,8 +12,6 @@ import com.pos.encode.Algorithm
 import com.pos.encode.algorithm.SHAUtil
 import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.helper.valid
-import com.pos.encode.ui.modeSelectionWidget
-import com.pos.encode.ui.singleSelectButton
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
@@ -48,19 +46,19 @@ object ShaView {
                 TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_512, SHA_512, algorithmType.value) { algorithmType.value = SHA_512 }
             }
             TopBar.divider()
-            modeSelectionWidget(Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, 56.dp, 0.dp), Strings.data_format) {
+            ButtonHelper.radioGroup(Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, 56.dp, 0.dp), Strings.data_format) {
                 params = Modifier.height(DP.itemHeight).padding(0.dp, 10.dp, 0.dp, 0.dp)
                 Row(params) {
-                    singleSelectButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_ascii, dataFormatter.value == Algorithm.ASCII) {
+                    ButtonHelper.radioButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_ascii, dataFormatter.value == Algorithm.ASCII) {
                         dataFormatter.value = Algorithm.ASCII
                     }
-                    singleSelectButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_hexadecimal, dataFormatter.value == Algorithm.HEXADECIMAL) {
+                    ButtonHelper.radioButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_hexadecimal, dataFormatter.value == Algorithm.HEXADECIMAL) {
                         dataFormatter.value = Algorithm.HEXADECIMAL
                     }
                 }
             }
-            TextFieldHelper.inputTextField(Modifier.weight(3.0f).padding(0.dp, DP.innerPadding, 0.dp, 0.dp), Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
-            TextFieldHelper.inputTextField(Modifier.weight(1.0f).padding(0.dp, DP.innerPadding, 0.dp, 0.dp), Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
+            TextFieldHelper.inputTextField(Modifier.weight(3.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
+            TextFieldHelper.inputTextField(Modifier.weight(1.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
             params = Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, DP.paddingEnd, DP.paddingBottom)
             Row(params) {
                 ButtonHelper.encryptButton {

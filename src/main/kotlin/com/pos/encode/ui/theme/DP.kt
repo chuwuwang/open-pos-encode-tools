@@ -8,7 +8,6 @@ object DP {
     val topBarHeight = 56.dp
     val sidebarHeight = 56.dp
 
-    val innerPadding = 8.dp
     val paddingTop = 24.dp
     val paddingEnd = 24.dp
     val paddingStart = 24.dp
@@ -22,6 +21,8 @@ object DP {
     val dialogButtonHeight = 48.dp
 
     val radius = 4.dp
+    val borderWidth = 1.5.dp
+    val dividerHeight = 1.dp
 
     val iconSize = 24.dp
     val titleSize = 18.sp
