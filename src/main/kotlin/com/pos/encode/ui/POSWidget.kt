@@ -17,31 +17,17 @@ import com.pos.encode.ui.theme.boldFontFamily
 import com.pos.encode.ui.theme.mediumFontFamily
 
 @Composable
-fun encryptButton(onClick: () -> Unit) {
-    Button(modifier = Modifier.size(96.dp, 72.dp).padding(0.dp, 0.dp, DP.padding, 0.dp), colors = ButtonDefaults.buttonColors(POSTheme.colors.button), onClick = onClick) {
-        Icon(painter = painterResource("images/ic_encrypt.png"), contentDescription = null, modifier = Modifier.size(36.dp), tint = POSTheme.colors.icon)
-    }
-}
-
-@Composable
-fun decryptButton(onClick: () -> Unit) {
-    Button(modifier = Modifier.size(96.dp, 72.dp).padding(0.dp, 0.dp, DP.padding, 0.dp), colors = ButtonDefaults.buttonColors(POSTheme.colors.button), onClick = onClick) {
-        Icon(painter = painterResource("images/ic_decrypt.png"), contentDescription = null, modifier = Modifier.size(36.dp), tint = POSTheme.colors.icon)
-    }
-}
-
-@Composable
 fun dataInputTextField(modifier: Modifier, text: String, value: String, maxLength: Int, onValueChange: (String) -> Unit) {
     Column(modifier) {
         Text(
-            modifier = Modifier.padding(DP.padding, 0.dp, 0.dp, 0.dp),
+            modifier = Modifier.padding(DP.startPadding, 0.dp, 0.dp, 0.dp),
             fontSize = DP.contentSize,
             textAlign = TextAlign.Center,
             text = text,
             color = POSTheme.colors.contentText,
             fontFamily = boldFontFamily
         )
-        Row(modifier = Modifier.padding(DP.padding, DP.innerPadding, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
+        Row(modifier = Modifier.padding(DP.startPadding, DP.innerPadding, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(
                 modifier = Modifier.weight(1.0f).fillMaxHeight(),
                 value = value,
@@ -71,7 +57,7 @@ fun modeSelectionWidget(modifier: Modifier, text: String, height: Dp = 72.dp, bo
     Box(modifier = modifier.height(height).fillMaxWidth(), contentAlignment = Alignment.Center) {
         Column {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Divider(Modifier.width(DP.padding).height(borderWidth), color = borderColor)
+                Divider(Modifier.width(DP.startPadding).height(borderWidth), color = borderColor)
                 Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = DP.contentSize, color = POSTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
                 Divider(Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
             }

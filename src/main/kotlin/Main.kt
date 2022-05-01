@@ -28,7 +28,7 @@ fun app() {
     val current = remember { mutableStateOf(0) }
     seaTheme {
         Row {
-            Sidebar.preview(Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.drawerBarBackground), current.value) {
+            Sidebar.preview(Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.sidebarBackground), current.value) {
                 current.value = it
             }
             val right = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.contentBackground)

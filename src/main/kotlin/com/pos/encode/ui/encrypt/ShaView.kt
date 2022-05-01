@@ -15,6 +15,7 @@ import com.pos.encode.ui.helper.valid
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.Strings
+import com.pos.encode.ui.widget.ButtonHelper
 import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.util.ByteUtil
 
@@ -44,7 +45,7 @@ object ShaView {
                 TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_512, SHA_512, algorithmType.value) { algorithmType.value = SHA_512 }
             }
             TopBar.divider()
-            modeSelectionWidget(Modifier.fillMaxWidth().padding(DP.padding, DP.topPadding, 56.dp, 0.dp), Strings.data_format) {
+            modeSelectionWidget(Modifier.fillMaxWidth().padding(DP.startPadding, DP.topPadding, 56.dp, 0.dp), Strings.data_format) {
                 params = Modifier.height(DP.itemHeight).padding(0.dp, 10.dp, 0.dp, 0.dp)
                 Row(params) {
                     singleSelectButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_ascii, dataFormatter.value == Algorithm.ASCII) {
@@ -57,9 +58,9 @@ object ShaView {
             }
             dataInputTextField(Modifier.weight(3.0f).padding(0.dp, DP.innerPadding, 0.dp, 0.dp), Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
             dataInputTextField(Modifier.weight(1.0f).padding(0.dp, DP.innerPadding, 0.dp, 0.dp), Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
-            params = Modifier.fillMaxWidth().padding(DP.padding, DP.padding, DP.padding, DP.bottomPadding)
+            params = Modifier.fillMaxWidth().padding(DP.startPadding, DP.topPadding, DP.endPadding, DP.bottomPadding)
             Row(params) {
-                encryptButton {
+                ButtonHelper.encryptButton {
                     val text = inputText.value
                     if (text.valid) {
                         hash(algorithmType.value, dataFormatter.value, text, outputText)

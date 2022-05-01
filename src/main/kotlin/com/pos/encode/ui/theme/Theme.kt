@@ -26,50 +26,52 @@ private val DefaultLocalColors = staticCompositionLocalOf { WeChat }
 
 @Stable
 class POSColors(
-    val drawerBar: Color,
-    val drawerBarBackground: Color,
-    val icon: Color,
-    val iconChecked: Color,
+    val sidebar: Color,
+    val sidebarBackground: Color,
+
     val topBar: Color,
     val topBarBackground: Color,
     val topBarText: Color,
     val topBarTextChecked: Color,
     val topBarDivider: Color,
     val topBarDividerChecked: Color,
+
+    val icon: Color,
+    val iconChecked: Color,
     val contentText: Color,
     val contentBackground: Color,
     val border: Color,
     val borderError: Color,
     val borderChecked: Color,
+    val dialogText: Color,
+    val dialogBackground: Color,
     val button: Color,
     val divider: Color,
-
-    val dialogBackground: Color,
-    val dialogText: Color,
 )
 
 private val WeChat = POSColors(
-    drawerBar = WeColor.green,
-    drawerBarBackground = WeColor.black,
-    icon = whiteColor,
-    iconChecked = WeColor.green,
+    sidebar = WeColor.green,
+    sidebarBackground = WeColor.black,
     topBar = WeColor.green,
     topBarBackground = whiteColor,
     topBarText = WeColor.black,
     topBarTextChecked = WeColor.green,
     topBarDivider = transparentColor,
     topBarDividerChecked = WeColor.green,
+    icon = whiteColor,
+    iconChecked = WeColor.green,
     contentText = WeColor.black,
     contentBackground = whiteColor,
     border = WeColor.gray,
     borderError = WeColor.danger,
     borderChecked = WeColor.success,
+    dialogText = whiteColor,
+    dialogBackground = whiteColor,
     button = WeColor.green,
     divider = WeColor.gray,
-    dialogBackground = whiteColor,
-    dialogText = whiteColor,
 )
 
+@Suppress("DuplicatedCode")
 @Composable
 fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable () -> Unit) {
     val targetColors = when (theme) {
@@ -77,45 +79,45 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         else -> WeChat
     }
     val animationSpec = TweenSpec<Color>(durationMillis = 600)
-    val drawerBar = animateColorAsState(targetColors.drawerBar, animationSpec)
-    val drawerBarBackground = animateColorAsState(targetColors.drawerBarBackground, animationSpec)
-    val icon = animateColorAsState(targetColors.icon, animationSpec)
-    val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
+    val sidebar = animateColorAsState(targetColors.sidebar, animationSpec)
+    val sidebarBackground = animateColorAsState(targetColors.sidebarBackground, animationSpec)
     val topBar = animateColorAsState(targetColors.topBar, animationSpec)
     val topBarBackground = animateColorAsState(targetColors.topBarBackground, animationSpec)
     val topBarText = animateColorAsState(targetColors.topBarText, animationSpec)
     val topBarTextChecked = animateColorAsState(targetColors.topBarTextChecked, animationSpec)
     val topBarDivider = animateColorAsState(targetColors.topBarDivider, animationSpec)
     val topBarDividerChecked = animateColorAsState(targetColors.topBarDividerChecked, animationSpec)
+    val icon = animateColorAsState(targetColors.icon, animationSpec)
+    val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
     val contentText = animateColorAsState(targetColors.contentText, animationSpec)
     val contentBackground = animateColorAsState(targetColors.contentBackground, animationSpec)
     val border = animateColorAsState(targetColors.border, animationSpec)
     val borderError = animateColorAsState(targetColors.borderError, animationSpec)
     val borderChecked = animateColorAsState(targetColors.borderChecked, animationSpec)
+    val dialogText = animateColorAsState(targetColors.dialogText, animationSpec)
+    val dialogBackground = animateColorAsState(targetColors.dialogBackground, animationSpec)
     val button = animateColorAsState(targetColors.button, animationSpec)
     val divider = animateColorAsState(targetColors.divider, animationSpec)
-    val dialogBackground = animateColorAsState(targetColors.dialogBackground, animationSpec)
-    val dialogText = animateColorAsState(targetColors.dialogText, animationSpec)
     val colors = POSColors(
-        drawerBar = drawerBar.value,
-        drawerBarBackground = drawerBarBackground.value,
-        icon = icon.value,
-        iconChecked = iconChecked.value,
+        sidebar = sidebar.value,
+        sidebarBackground = sidebarBackground.value,
         topBar = topBar.value,
         topBarBackground = topBarBackground.value,
         topBarText = topBarText.value,
         topBarTextChecked = topBarTextChecked.value,
         topBarDivider = topBarDivider.value,
         topBarDividerChecked = topBarDividerChecked.value,
+        icon = icon.value,
+        iconChecked = iconChecked.value,
         contentText = contentText.value,
         contentBackground = contentBackground.value,
         border = border.value,
         borderError = borderError.value,
         borderChecked = borderChecked.value,
+        dialogText = dialogText.value,
+        dialogBackground = dialogBackground.value,
         button = button.value,
         divider = divider.value,
-        dialogBackground = dialogBackground.value,
-        dialogText = dialogText.value,
     )
     // Use the font family to define a custom typography
     val craneTypography = Typography(
