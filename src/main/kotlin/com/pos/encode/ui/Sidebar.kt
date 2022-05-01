@@ -55,9 +55,9 @@ object Sidebar {
 
     @Composable
     private fun itemView(modifier: Modifier, text: String, resourcePath: String, tint: Color) {
-        Row(modifier.fillMaxWidth().height(DP.drawerBarHeight).padding(DP.startPadding, 0.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
+        Row(modifier.fillMaxWidth().height(DP.sidebarHeight).padding(DP.paddingStart, 0.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(painter = painterResource(resourcePath), contentDescription = null, modifier = Modifier.size(DP.iconSize), tint = tint)
-            Text(modifier = Modifier.padding(DP.startPadding, 0.dp, 0.dp, 0.dp), color = tint, textAlign = TextAlign.Start, fontSize = DP.titleSize, text = text, fontFamily = boldFontFamily)
+            Text(modifier = Modifier.padding(DP.paddingStart, 0.dp, 0.dp, 0.dp), color = tint, textAlign = TextAlign.Start, fontSize = DP.titleSize, text = text, fontFamily = boldFontFamily)
         }
     }
 

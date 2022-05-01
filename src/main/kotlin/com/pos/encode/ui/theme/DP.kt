@@ -6,13 +6,14 @@ import androidx.compose.ui.unit.sp
 object DP {
     val itemHeight = 56.dp
     val topBarHeight = 56.dp
-    val drawerBarHeight = 56.dp
+    val sidebarHeight = 56.dp
 
     val innerPadding = 8.dp
-    val topPadding = 24.dp
-    val endPadding = 24.dp
-    val startPadding = 24.dp
-    val bottomPadding = 24.dp
+    val paddingTop = 24.dp
+    val paddingEnd = 24.dp
+    val paddingStart = 24.dp
+    val paddingBottom = 24.dp
+    val innerPaddingTop = 8.dp
 
     val buttonWidth = 96.dp
     val buttonHeight = 72.dp
@@ -27,6 +28,5 @@ object DP {
     val contentSize = 16.sp
     val descriptionSize = 14.sp
     val letterSpacing = 4.sp
-
 
 }
