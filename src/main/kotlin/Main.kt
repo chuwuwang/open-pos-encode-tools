@@ -15,10 +15,10 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.ui.Sidebar
+import com.pos.encode.ui.encrypt.DESView
 import com.pos.encode.ui.encrypt.MD5View
-import com.pos.encode.ui.encrypt.ShaView
+import com.pos.encode.ui.encrypt.SHAView
 import com.pos.encode.ui.encrypt.aesView
-import com.pos.encode.ui.encrypt.des3DesView
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.seaTheme
 
@@ -36,8 +36,8 @@ fun app() {
                 when (current.value) {
                     Sidebar.MENU_AES -> aesView(right)
                     Sidebar.MENU_MD5 -> MD5View.preview(right)
-                    Sidebar.MENU_SHA -> ShaView.preview(right)
-                    Sidebar.MENU_DES -> des3DesView(right)
+                    Sidebar.MENU_SHA -> SHAView.preview(right)
+                    Sidebar.MENU_DES -> DESView.preview(right)
                 }
             }
         }

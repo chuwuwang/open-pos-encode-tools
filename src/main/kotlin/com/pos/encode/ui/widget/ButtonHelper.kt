@@ -17,6 +17,9 @@ import com.pos.encode.ui.theme.*
 
 object ButtonHelper {
 
+    val RADIO_GROUP_HEIGHT = 72.dp
+    val TEXT_MARGIN_BORDER = 10.dp
+
     @Composable
     fun encryptButton(onClick: () -> Unit) {
         Button(
@@ -50,18 +53,18 @@ object ButtonHelper {
     }
 
     @Composable
-    fun radioButton(modifier: Modifier, text: String, selected: Boolean, onClick: () -> Unit) {
-        Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+    fun radioButton(text: String, selected: Boolean, onClick: () -> Unit) {
+        Row(modifier = Modifier.width(192.dp).fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
             RadioButton(onClick = onClick, selected = selected, colors = RadioButtonDefaults.colors(POSTheme.colors.button))
             Text(text = text, fontSize = DP.contentSize, fontFamily = mediumFontFamily, color = POSTheme.colors.contentText)
         }
     }
 
     @Composable
-    fun radioGroup(modifier: Modifier, text: String, content: @Composable () -> Unit) {
+    fun radioGroup(modifier: Modifier, text: String, height: Dp = RADIO_GROUP_HEIGHT, content: @Composable () -> Unit) {
         val borderWidth = DP.borderWidth
         val borderColor = POSTheme.colors.borderChecked
-        Box(modifier = modifier.height(72.dp).fillMaxWidth(), contentAlignment = Alignment.Center) {
+        Box(modifier = modifier.height(height), contentAlignment = Alignment.Center) {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Divider(modifier = Modifier.width(24.dp).height(borderWidth), color = borderColor)
@@ -72,7 +75,7 @@ object ButtonHelper {
                 Spacer(params)
                 Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
             }
-            Row(modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 0.dp), horizontalArrangement = Arrangement.Start) {
+            Row(modifier = Modifier.padding(0.dp, TEXT_MARGIN_BORDER, 0.dp, 0.dp), horizontalArrangement = Arrangement.Start) {
                 Divider(modifier = Modifier.width(borderWidth).fillMaxHeight(), color = borderColor)
                 val params = Modifier.weight(1.0f)
                 Spacer(params)

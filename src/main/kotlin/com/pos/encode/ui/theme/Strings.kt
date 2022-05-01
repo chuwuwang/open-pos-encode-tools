@@ -7,7 +7,7 @@ object Strings {
     val data_output: String
         get() = "Output Data"
     val data_format: String
-        get() = "Data Format"
+        get() = "Data Input"
     val data_format_ascii: String
         get() = "ASCII"
     val data_format_hexadecimal: String
@@ -55,15 +55,29 @@ object Strings {
         get() = "CBC"
     val mode_CFB: String
         get() = "CFB"
+    val mode_OFB: String
+        get() = "OFB"
 
     val padding: String
         get() = "Padding"
     val padding_No: String
-        get() = "NoPadding"
+        get() = "None"
     val padding_PKCS5: String
-        get() = "PKCS5Padding"
+        get() = "PKCS#5"
     val padding_PKCS7: String
-        get() = "PKCS7Padding"
+        get() = "PKCS#7"
+    val padding_ZeroByte: String
+        get() = "Zero"
+    val padding_TBC: String
+        get() = "TBC"
+    val padding_X923: String
+        get() = "X923"
+    val padding_ISO7816d4: String
+        get() = "ISO 7816-4"
+    val padding_ISO10126: String
+        get() = "ISO 10126"
+    val padding_ISO10126d2: String
+        get() = "ISO 10126-2"
 
     val ok: String
         get() = "OK"

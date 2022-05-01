@@ -20,7 +20,7 @@ import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.ui.widget.TextFieldHelper
 import com.pos.encode.util.ByteUtil
 
-object ShaView {
+object SHAView {
 
     private const val SHA_1 = 0
     private const val SHA_224 = 1
@@ -31,45 +31,53 @@ object ShaView {
     @Suppress("DuplicatedCode")
     @Composable
     fun preview(modifier: Modifier) {
+        val algorithm = remember { mutableStateOf(0) }
+        val formatter = remember { mutableStateOf(Algorithm.HEXADECIMAL) }
+
         val inputText = remember { mutableStateOf("") }
         val outputText = remember { mutableStateOf("") }
-        val algorithmType = remember { mutableStateOf(0) }
         val visibleDialog = remember { mutableStateOf(false) }
-        val dataFormatter = remember { mutableStateOf(Algorithm.HEXADECIMAL) }
+
         Column(modifier) {
             var params = Modifier.fillMaxWidth().height(DP.topBarHeight).background(POSTheme.colors.topBarBackground)
             Row(params) {
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_1, SHA_1, algorithmType.value) { algorithmType.value = SHA_1 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_224, SHA_224, algorithmType.value) { algorithmType.value = SHA_224 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_256, SHA_256, algorithmType.value) { algorithmType.value = SHA_256 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_384, SHA_384, algorithmType.value) { algorithmType.value = SHA_384 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_512, SHA_512, algorithmType.value) { algorithmType.value = SHA_512 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_1, SHA_1, algorithm.value) { algorithm.value = SHA_1 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_224, SHA_224, algorithm.value) { algorithm.value = SHA_224 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_256, SHA_256, algorithm.value) { algorithm.value = SHA_256 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_384, SHA_384, algorithm.value) { algorithm.value = SHA_384 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_sha_512, SHA_512, algorithm.value) { algorithm.value = SHA_512 }
             }
+
             TopBar.divider()
-            ButtonHelper.radioGroup(Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, 56.dp, 0.dp), Strings.data_format) {
-                params = Modifier.height(DP.itemHeight).padding(0.dp, 10.dp, 0.dp, 0.dp)
+
+            ButtonHelper.radioGroup(Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp), Strings.data_format) {
+                params = Modifier.fillMaxWidth().padding(0.dp, ButtonHelper.TEXT_MARGIN_BORDER, 0.dp, 0.dp)
                 Row(params) {
-                    ButtonHelper.radioButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_ascii, dataFormatter.value == Algorithm.ASCII) {
-                        dataFormatter.value = Algorithm.ASCII
+                    ButtonHelper.radioButton(Strings.data_format_ascii, formatter.value == Algorithm.ASCII) {
+                        formatter.value = Algorithm.ASCII
                     }
-                    ButtonHelper.radioButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_hexadecimal, dataFormatter.value == Algorithm.HEXADECIMAL) {
-                        dataFormatter.value = Algorithm.HEXADECIMAL
+                    ButtonHelper.radioButton(Strings.data_format_hexadecimal, formatter.value == Algorithm.HEXADECIMAL) {
+                        formatter.value = Algorithm.HEXADECIMAL
                     }
                 }
             }
+
             TextFieldHelper.inputTextField(Modifier.weight(3.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
+
             TextFieldHelper.inputTextField(Modifier.weight(1.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
+
             params = Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, DP.paddingEnd, DP.paddingBottom)
             Row(params) {
                 ButtonHelper.encryptButton {
                     val text = inputText.value
                     if (text.valid) {
-                        hash(algorithmType.value, dataFormatter.value, text, outputText)
+                        hash(algorithm.value, formatter.value, text, outputText)
                     } else {
                         visibleDialog.value = true
                     }
                 }
             }
+
             DialogHelper.errorDialog(Strings.error_data, visibleDialog)
         }
     }

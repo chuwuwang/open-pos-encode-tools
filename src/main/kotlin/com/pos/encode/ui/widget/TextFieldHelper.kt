@@ -17,6 +17,8 @@ import com.pos.encode.ui.theme.mediumFontFamily
 
 object TextFieldHelper {
 
+    val HINT_TEXT_WIDTH = 56.dp
+
     @Composable
     fun inputTextField(modifier: Modifier, text: String, value: String, maxLength: Int, onValueChange: (String) -> Unit) {
         Column(modifier) {
@@ -37,7 +39,7 @@ object TextFieldHelper {
                     colors = TextFieldDefaults.outlinedTextFieldColors(textColor = POSTheme.colors.contentText, cursorColor = POSTheme.colors.borderChecked, unfocusedBorderColor = POSTheme.colors.border, focusedBorderColor = POSTheme.colors.borderChecked)
                 )
                 Text(
-                    modifier = Modifier.width(56.dp),
+                    modifier = Modifier.width(HINT_TEXT_WIDTH),
                     fontSize = DP.contentSize,
                     textAlign = TextAlign.Center,
                     fontFamily = mediumFontFamily,

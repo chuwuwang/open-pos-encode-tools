@@ -29,43 +29,51 @@ object MD5View {
     @Suppress("DuplicatedCode")
     @Composable
     fun preview(modifier: Modifier) {
+        val algorithm = remember { mutableStateOf(0) }
+        val formatter = remember { mutableStateOf(Algorithm.HEXADECIMAL) }
+
         val inputText = remember { mutableStateOf("") }
         val outputText = remember { mutableStateOf("") }
-        val algorithmType = remember { mutableStateOf(0) }
         val visibleDialog = remember { mutableStateOf(false) }
-        val dataFormatter = remember { mutableStateOf(Algorithm.HEXADECIMAL) }
+
         Column(modifier) {
             var params = Modifier.fillMaxWidth().height(DP.topBarHeight).background(POSTheme.colors.topBarBackground)
             Row(params) {
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_md2, MD2, algorithmType.value) { algorithmType.value = MD2 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_md4, MD4, algorithmType.value) { algorithmType.value = MD4 }
-                TopBar.item(Modifier.weight(1.0f), Strings.hash_md5, MD5, algorithmType.value) { algorithmType.value = MD5 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_md2, MD2, algorithm.value) { algorithm.value = MD2 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_md4, MD4, algorithm.value) { algorithm.value = MD4 }
+                TopBar.item(Modifier.weight(1.0f), Strings.hash_md5, MD5, algorithm.value) { algorithm.value = MD5 }
             }
+
             TopBar.divider()
-            ButtonHelper.radioGroup(Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, 56.dp, 0.dp), Strings.data_format) {
-                params = Modifier.height(DP.itemHeight).padding(0.dp, 10.dp, 0.dp, 0.dp)
+
+            ButtonHelper.radioGroup(Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp), Strings.data_format) {
+                params = Modifier.fillMaxWidth().padding(0.dp, ButtonHelper.TEXT_MARGIN_BORDER, 0.dp, 0.dp)
                 Row(params) {
-                    ButtonHelper.radioButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_ascii, dataFormatter.value == Algorithm.ASCII) {
-                        dataFormatter.value = Algorithm.ASCII
+                    ButtonHelper.radioButton(Strings.data_format_ascii, formatter.value == Algorithm.ASCII) {
+                        formatter.value = Algorithm.ASCII
                     }
-                    ButtonHelper.radioButton(Modifier.weight(1.0f).fillMaxHeight(), Strings.data_format_hexadecimal, dataFormatter.value == Algorithm.HEXADECIMAL) {
-                        dataFormatter.value = Algorithm.HEXADECIMAL
+                    ButtonHelper.radioButton(Strings.data_format_hexadecimal, formatter.value == Algorithm.HEXADECIMAL) {
+                        formatter.value = Algorithm.HEXADECIMAL
                     }
                 }
             }
+
             TextFieldHelper.inputTextField(Modifier.weight(3.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
+
             TextFieldHelper.inputTextField(Modifier.weight(1.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
+
             params = Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, DP.paddingEnd, DP.paddingBottom)
             Row(params) {
                 ButtonHelper.encryptButton {
                     val text = inputText.value
                     if (text.valid) {
-                        hash(algorithmType.value, dataFormatter.value, text, outputText)
+                        hash(algorithm.value, formatter.value, text, outputText)
                     } else {
                         visibleDialog.value = true
                     }
                 }
             }
+
             DialogHelper.errorDialog(Strings.error_data, visibleDialog)
         }
     }
