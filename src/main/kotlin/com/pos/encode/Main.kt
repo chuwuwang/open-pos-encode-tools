@@ -1,3 +1,5 @@
+package com.pos.encode
+
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints

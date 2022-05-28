@@ -4,6 +4,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 object DP {
+    val iconSize = 24.dp
     val itemHeight = 56.dp
     val topBarHeight = 56.dp
     val sidebarHeight = 56.dp
@@ -24,9 +25,8 @@ object DP {
     val borderWidth = 1.5.dp
     val dividerHeight = 1.dp
 
-    val iconSize = 24.dp
-    val titleSize = 18.sp
-    val contentSize = 16.sp
+    val titleSize = 16.sp
+    val contentSize = 14.sp
     val descriptionSize = 14.sp
     val letterSpacing = 4.sp
 

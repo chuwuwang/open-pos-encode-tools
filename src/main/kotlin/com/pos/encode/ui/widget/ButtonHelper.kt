@@ -75,7 +75,7 @@ object ButtonHelper {
                 Spacer(params)
                 Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
             }
-            Row(modifier = Modifier.padding(0.dp, TEXT_MARGIN_BORDER, 0.dp, 0.dp), horizontalArrangement = Arrangement.Start) {
+            Row(modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 0.dp), horizontalArrangement = Arrangement.Start) {
                 Divider(modifier = Modifier.width(borderWidth).fillMaxHeight(), color = borderColor)
                 val params = Modifier.weight(1.0f)
                 Spacer(params)
