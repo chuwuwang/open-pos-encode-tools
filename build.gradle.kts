@@ -1,13 +1,12 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.31"
-    id("org.jetbrains.compose") version "1.0.0"
+    kotlin("jvm")
+    id("org.jetbrains.compose")
 }
 
-group = "com.sea"
+group = "com.sea.pos"
 version = "1.0"
 
 repositories {
@@ -17,9 +16,12 @@ repositories {
 }
 
 dependencies {
-    implementation( fileTree( mapOf( "dir" to "libs", "include" to listOf("*.jar") ) ) )
+    val list = "include" to listOf("*.jar")
+    val map = mapOf("dir" to "libs", list)
+    val fileTree = fileTree(map)
+    implementation(fileTree)
     implementation(compose.desktop.currentOs)
-    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 }
 
 tasks.withType<KotlinCompile> {
@@ -31,7 +33,7 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Exe)
-            packageName = "POSTools"
+            packageName = "com.sea.pos.tools"
             packageVersion = "1.0.0"
         }
     }
