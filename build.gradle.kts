@@ -6,8 +6,8 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-group = "com.sea.pos"
-version = "1.0"
+group = "com.sea.pos.tools"
+version = "1.1.1-SNAPSHOT"
 
 repositories {
     google()
@@ -34,7 +34,13 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Exe)
             packageName = "com.sea.pos.tools"
-            packageVersion = "1.0.0"
+            packageVersion = "1.1.1"
+            macOS {
+                signing { bundleID = "com.sea.pos.tools" }
+                // val launcher = project.file("icon.ic" + "ns")
+                // iconFile.set(launcher)
+            }
+            includeAllModules = true
         }
     }
 }
