@@ -22,6 +22,7 @@ dependencies {
     implementation(fileTree)
     implementation(compose.desktop.currentOs)
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 }
 
 tasks.withType<KotlinCompile> {
