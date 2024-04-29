@@ -23,7 +23,7 @@ object ButtonHelper {
     @Composable
     fun encryptButton(onClick: () -> Unit) {
         Button(
-            modifier = Modifier.size(DP.buttonWidth, DP.buttonHeight).padding(0.dp, 0.dp, DP.paddingEnd, 0.dp),
+            modifier = Modifier.size(DP.buttonWidth, DP.buttonHeight).padding(0.dp, 0.dp, DP.marginEnd, 0.dp),
             colors = ButtonDefaults.buttonColors(POSTheme.colors.button),
             onClick = onClick
         ) {
@@ -39,7 +39,7 @@ object ButtonHelper {
     @Composable
     fun decryptButton(onClick: () -> Unit) {
         Button(
-            modifier = Modifier.size(DP.buttonWidth, DP.buttonHeight).padding(0.dp, 0.dp, DP.paddingEnd, 0.dp),
+            modifier = Modifier.size(DP.buttonWidth, DP.buttonHeight).padding(0.dp, 0.dp, DP.marginEnd, 0.dp),
             colors = ButtonDefaults.buttonColors(POSTheme.colors.button),
             onClick = onClick
         ) {

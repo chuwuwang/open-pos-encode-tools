@@ -25,7 +25,6 @@ public final class JdkMD5Util {
         return null;
     }
 
-    @SuppressWarnings("PointlessBooleanExpression")
     public static byte[] md5File(final File file) {
         FileInputStream fileInputStream = null;
         DigestInputStream digestInputStream;

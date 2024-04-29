@@ -34,7 +34,6 @@ public final class MD5Util {
         return hashCalculator(bytes, digest);
     }
 
-    @SuppressWarnings("PointlessBooleanExpression")
     public static byte[] md5File(final File file) {
         FileInputStream fileInputStream = null;
         DigestInputStream digestInputStream;

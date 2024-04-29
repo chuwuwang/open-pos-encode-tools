@@ -1,6 +1,5 @@
 package com.pos.encode.algorithm;
 
-@SuppressWarnings("unused")
 public final class AlgorithmUtil {
 
     private AlgorithmUtil() {

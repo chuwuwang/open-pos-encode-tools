@@ -23,14 +23,14 @@ object TextFieldHelper {
     fun inputTextField(modifier: Modifier, text: String, value: String, maxLength: Int, onValueChange: (String) -> Unit) {
         Column(modifier) {
             Text(
-                modifier = Modifier.padding(DP.paddingStart, 0.dp, 0.dp, 0.dp),
+                modifier = Modifier.padding(DP.marginStart, 0.dp, 0.dp, 0.dp),
                 text = text,
                 fontSize = DP.contentSize,
                 fontFamily = boldFontFamily,
                 textAlign = TextAlign.Center,
                 color = POSTheme.colors.contentText
             )
-            Row(modifier = Modifier.padding(DP.paddingStart, DP.innerPaddingTop, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(modifier = Modifier.padding(DP.marginStart, DP.paddingTop, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     modifier = Modifier.weight(1.0f).fillMaxHeight(),
                     value = value,

@@ -30,3 +30,7 @@ fun aesView(modifier: Modifier) {
         TopBar.divider()
     }
 }
+
+object AESActivity {
+
+}

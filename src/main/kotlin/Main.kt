@@ -19,7 +19,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.ui.Sidebar
 import com.pos.encode.ui.encrypt.DESView
-import com.pos.encode.ui.encrypt.MD5View
+import com.pos.encode.ui.encrypt.MD5AlgorithmActivity
 import com.pos.encode.ui.encrypt.SHAView
 import com.pos.encode.ui.encrypt.aesView
 import com.pos.encode.ui.showSidebar
@@ -46,7 +46,7 @@ private fun switchPage(index: MutableState<Int>, modifier: Modifier) {
     if (index.value == Sidebar.MENU_AES) {
         aesView(modifier)
     } else if (index.value == Sidebar.MENU_MD5) {
-        MD5View.preview(modifier)
+        MD5AlgorithmActivity.preview(modifier)
     } else if (index.value == Sidebar.MENU_SHA) {
         SHAView.preview(modifier)
     } else if (index.value == Sidebar.MENU_DES) {

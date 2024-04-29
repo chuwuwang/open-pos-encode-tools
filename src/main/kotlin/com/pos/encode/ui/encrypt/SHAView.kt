@@ -50,7 +50,7 @@ object SHAView {
 
             TopBar.divider()
 
-            ButtonHelper.radioGroup(Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp), Strings.data_format) {
+            ButtonHelper.radioGroup(Modifier.fillMaxWidth().padding(DP.marginStart, DP.marginTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp), Strings.data_format) {
                 params = Modifier.fillMaxWidth().padding(0.dp, ButtonHelper.TEXT_MARGIN_BORDER, 0.dp, 0.dp)
                 Row(params) {
                     ButtonHelper.radioButton(Strings.data_format_ascii, formatter.value == Algorithm.ASCII) {
@@ -62,11 +62,11 @@ object SHAView {
                 }
             }
 
-            TextFieldHelper.inputTextField(Modifier.weight(3.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
+            TextFieldHelper.inputTextField(Modifier.weight(3.0f).padding(0.dp, DP.paddingTop, 0.dp, 0.dp), Strings.data_input, inputText.value, Int.MAX_VALUE) { inputText.value = it }
 
-            TextFieldHelper.inputTextField(Modifier.weight(1.0f).padding(0.dp, DP.innerPaddingTop, 0.dp, 0.dp), Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
+            TextFieldHelper.inputTextField(Modifier.weight(1.0f).padding(0.dp, DP.paddingTop, 0.dp, 0.dp), Strings.data_output, outputText.value, Int.MAX_VALUE) { outputText.value = it }
 
-            params = Modifier.fillMaxWidth().padding(DP.paddingStart, DP.paddingTop, DP.paddingEnd, DP.paddingBottom)
+            params = Modifier.fillMaxWidth().padding(DP.marginStart, DP.marginTop, DP.marginEnd, DP.marginBottom)
             Row(params) {
                 ButtonHelper.encryptButton {
                     val text = inputText.value
