@@ -10,12 +10,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.pos.encode.Algorithm
-import com.pos.encode.algorithm.MD5Util
+import com.pos.encode.algorithm.SHAUtil
 import com.pos.encode.com.pos.encode.ui.CommonUiUtil
 import com.pos.encode.com.pos.encode.ui.widget.ButtonUtil
 import com.pos.encode.com.pos.encode.ui.widget.InputTextFieldUtil
 import com.pos.encode.com.pos.encode.ui.widget.RadioGroupUtil
 import com.pos.encode.ui.TopBar
+import com.pos.encode.ui.TopBar.topBarItemView
 import com.pos.encode.ui.helper.valid
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.Strings
@@ -23,11 +24,13 @@ import com.pos.encode.ui.widget.ButtonHelper
 import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.util.ByteUtil
 
-object MD5AlgorithmActivity {
+object ShaAlgorithmActivity {
 
-    private const val MD2 = 0
-    private const val MD4 = 1
-    private const val MD5 = 2
+    private const val SHA_1 = 0
+    private const val SHA_224 = 1
+    private const val SHA_256 = 2
+    private const val SHA_384 = 3
+    private const val SHA_512 = 4
 
     @Composable
     fun preview(modifier: Modifier) {
@@ -56,7 +59,7 @@ object MD5AlgorithmActivity {
             val onButtonClickListener = {
                 val text = inputText.value
                 if (text.valid) {
-                    hash(algorithmText.value, formatterText.value, text, outputText)
+                    sha(algorithmText.value, formatterText.value, text, outputText)
                 } else {
                     visibleDialog.value = true
                 }
@@ -71,9 +74,11 @@ object MD5AlgorithmActivity {
     @Composable
     private fun showTopBar(algorithmText: MutableState<Int>) {
         TopBar.showTopBar {
-            TopBar.itemView(Modifier.weight(1.0f), Strings.hash_md2, MD2, algorithmText.value) { algorithmText.value = MD2 }
-            TopBar.itemView(Modifier.weight(1.0f), Strings.hash_md4, MD4, algorithmText.value) { algorithmText.value = MD4 }
-            TopBar.itemView(Modifier.weight(1.0f), Strings.hash_md5, MD5, algorithmText.value) { algorithmText.value = MD5 }
+            topBarItemView(Strings.hash_sha_1, SHA_1, algorithmText.value) { algorithmText.value = SHA_1 }
+            topBarItemView(Strings.hash_sha_224, SHA_224, algorithmText.value) { algorithmText.value = SHA_224 }
+            topBarItemView(Strings.hash_sha_256, SHA_256, algorithmText.value) { algorithmText.value = SHA_256 }
+            topBarItemView(Strings.hash_sha_384, SHA_384, algorithmText.value) { algorithmText.value = SHA_384 }
+            topBarItemView(Strings.hash_sha_512, SHA_512, algorithmText.value) { algorithmText.value = SHA_512 }
         }
     }
 
@@ -89,18 +94,22 @@ object MD5AlgorithmActivity {
         RadioGroupUtil.radioGroup(Strings.data_format, content = content)
     }
 
-    private fun hash(type: Int, dataFormatter: String, data: String, outputText: MutableState<String>) {
+    private fun sha(type: Int, dataFormatter: String, data: String, outputText: MutableState<String>) {
         val dataBytes = if (dataFormatter == Algorithm.HEXADECIMAL) {
             ByteUtil.hexString2Bytes(data)
         } else {
             data.toByteArray(Charsets.US_ASCII)
         }
-        val result = if (type == MD4) {
-            MD5Util.md4(dataBytes)
-        } else if (type == MD5) {
-            MD5Util.md5(dataBytes)
+        val result = if (type == SHA_224) {
+            SHAUtil.sha224(dataBytes)
+        } else if (type == SHA_256) {
+            SHAUtil.sha256(dataBytes)
+        } else if (type == SHA_384) {
+            SHAUtil.sha384(dataBytes)
+        } else if (type == SHA_512) {
+            SHAUtil.sha512(dataBytes)
         } else {
-            MD5Util.md2(dataBytes)
+            SHAUtil.sha1(dataBytes)
         }
         if (result != null) {
             val hexString = ByteUtil.bytes2HexString(result)

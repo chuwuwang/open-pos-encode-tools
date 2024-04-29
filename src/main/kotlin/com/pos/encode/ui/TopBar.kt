@@ -24,8 +24,8 @@ object TopBar {
     }
 
     @Composable
-    fun itemView(modifier: Modifier, text: String, index: Int, selectIndex: Int, onClick: () -> Unit) {
-        BoxWithConstraints(modifier.fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
+    fun RowScope.topBarItemView(text: String, index: Int, selectIndex: Int, onClick: () -> Unit) {
+        BoxWithConstraints(Modifier.weight(1.0f).fillMaxHeight().clickable(onClick = onClick), contentAlignment = Alignment.Center) {
             val textColor = getTextColor(index, selectIndex)
             val dividerColor = getDividerColor(index, selectIndex)
             Text(textAlign = TextAlign.Center, color = textColor, fontSize = DP.contentSize, text = text, fontFamily = boldFontFamily)
