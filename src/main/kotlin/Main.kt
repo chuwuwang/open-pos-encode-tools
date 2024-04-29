@@ -19,10 +19,8 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.ui.Sidebar
 import com.pos.encode.ui.encrypt.DESView
-import com.pos.encode.ui.encrypt.Md5AlgorithmActivity
-import com.pos.encode.ui.encrypt.ShaAlgorithmActivity
+import com.pos.encode.ui.encrypt.HashAlgorithmActivity
 import com.pos.encode.ui.encrypt.aesView
-import com.pos.encode.ui.showSidebar
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.seaTheme
 
@@ -33,7 +31,7 @@ fun app() {
     seaTheme {
         Row {
             val onSidebarClick: (Int) -> Unit = { current.value = it }
-            showSidebar(Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.sidebarBackground), current.value, onSidebarClick)
+            Sidebar.showSidebar(Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.sidebarBackground), current.value, onSidebarClick)
 
             val rightModifier = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.contentBackground)
             BoxWithConstraints(modifier = rightModifier) { switchPage(current, rightModifier) }
@@ -45,10 +43,8 @@ fun app() {
 private fun switchPage(index: MutableState<Int>, modifier: Modifier) {
     if (index.value == Sidebar.MENU_AES) {
         aesView(modifier)
-    } else if (index.value == Sidebar.MENU_MD5) {
-        Md5AlgorithmActivity.preview(modifier)
-    } else if (index.value == Sidebar.MENU_SHA) {
-        ShaAlgorithmActivity.preview(modifier)
+    } else if (index.value == Sidebar.MENU_HASH_ALGORITHM) {
+        HashAlgorithmActivity.preview(modifier)
     } else if (index.value == Sidebar.MENU_DES) {
         DESView.preview(modifier)
     }
@@ -56,6 +52,7 @@ private fun switchPage(index: MutableState<Int>, modifier: Modifier) {
 
 fun main() = application {
     val position = WindowPosition.Aligned(Alignment.Center)
+    // val windowState = WindowState(size = DpSize.Unspecified, position = position)
     val windowState = WindowState(size = DpSize(1400.dp, 1000.dp), position = position)
     Window(title = "POS Tools", state = windowState, onCloseRequest = ::exitApplication) { app() }
 }

@@ -27,13 +27,14 @@ object Strings {
     val des3des_3des: String
         get() = "3DES"
 
+    val hash_algorithm: String
+        get() = "Hash Algorithm"
     val hash_md2: String
         get() = "MD2"
     val hash_md4: String
         get() = "MD4"
     val hash_md5: String
         get() = "MD5"
-
     val hash_sha: String
         get() = "SHA"
     val hash_sha_1: String

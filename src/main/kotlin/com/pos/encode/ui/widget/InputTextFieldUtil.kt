@@ -21,7 +21,7 @@ object InputTextFieldUtil {
 
     @Composable
     fun showInputTextFieldWithLength(modifier: Modifier, value: String, maxLength: Int = Int.MAX_VALUE, onValueChange: (String) -> Unit) {
-        val textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = DP.contentSize, fontFamily = mediumFontFamily, letterSpacing = DP.letterSpacing)
+        val textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = DP.contentSize, fontFamily = mediumFontFamily, letterSpacing = DP.wordLetterSpacing)
         Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(modifier = Modifier.weight(1.0f).fillMaxHeight(), value = value, onValueChange = onValueChange, textStyle = textStyle, colors = BackgroundUtil.inputTextFieldColor)
             Text(modifier = Modifier.width(TEXT_LENGTH_WIDTH), fontSize = DP.contentSize, textAlign = TextAlign.Center, fontFamily = mediumFontFamily, text = "[" + value.length.toString() + "]", color = if (value.length > maxLength) POSTheme.colors.borderError else POSTheme.colors.borderChecked)

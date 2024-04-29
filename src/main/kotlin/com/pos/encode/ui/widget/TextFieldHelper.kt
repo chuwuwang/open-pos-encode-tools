@@ -35,7 +35,7 @@ object TextFieldHelper {
                     modifier = Modifier.weight(1.0f).fillMaxHeight(),
                     value = value,
                     onValueChange = onValueChange,
-                    textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = DP.contentSize, fontFamily = mediumFontFamily, letterSpacing = DP.letterSpacing),
+                    textStyle = TextStyle(color = POSTheme.colors.contentText, fontSize = DP.contentSize, fontFamily = mediumFontFamily, letterSpacing = DP.wordLetterSpacing),
                     colors = TextFieldDefaults.outlinedTextFieldColors(textColor = POSTheme.colors.contentText, cursorColor = POSTheme.colors.borderChecked, unfocusedBorderColor = POSTheme.colors.border, focusedBorderColor = POSTheme.colors.borderChecked)
                 )
                 Text(

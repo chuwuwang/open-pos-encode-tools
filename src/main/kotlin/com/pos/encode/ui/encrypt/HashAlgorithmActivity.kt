@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.pos.encode.Algorithm
+import com.pos.encode.algorithm.MD5Util
 import com.pos.encode.algorithm.SHAUtil
 import com.pos.encode.com.pos.encode.ui.CommonUiUtil
 import com.pos.encode.com.pos.encode.ui.widget.ButtonUtil
@@ -24,13 +25,16 @@ import com.pos.encode.ui.widget.ButtonHelper
 import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.util.ByteUtil
 
-object ShaAlgorithmActivity {
+object HashAlgorithmActivity {
 
-    private const val SHA_1 = 0
-    private const val SHA_224 = 1
-    private const val SHA_256 = 2
-    private const val SHA_384 = 3
-    private const val SHA_512 = 4
+    private const val MD2 = 0
+    private const val MD4 = 1
+    private const val MD5 = 2
+    private const val SHA_1 = 10
+    private const val SHA_224 = 11
+    private const val SHA_256 = 12
+    private const val SHA_384 = 13
+    private const val SHA_512 = 14
 
     @Composable
     fun preview(modifier: Modifier) {
@@ -74,6 +78,9 @@ object ShaAlgorithmActivity {
     @Composable
     private fun showTopBar(algorithmText: MutableState<Int>) {
         TopBar.showTopBar {
+            topBarItemView(Strings.hash_md2, MD2, algorithmText.value) { algorithmText.value = MD2 }
+            topBarItemView(Strings.hash_md4, MD4, algorithmText.value) { algorithmText.value = MD4 }
+            topBarItemView(Strings.hash_md5, MD5, algorithmText.value) { algorithmText.value = MD5 }
             topBarItemView(Strings.hash_sha_1, SHA_1, algorithmText.value) { algorithmText.value = SHA_1 }
             topBarItemView(Strings.hash_sha_224, SHA_224, algorithmText.value) { algorithmText.value = SHA_224 }
             topBarItemView(Strings.hash_sha_256, SHA_256, algorithmText.value) { algorithmText.value = SHA_256 }
@@ -100,7 +107,13 @@ object ShaAlgorithmActivity {
         } else {
             data.toByteArray(Charsets.US_ASCII)
         }
-        val result = if (type == SHA_224) {
+        val result = if (type == MD4) {
+            MD5Util.md4(dataBytes)
+        } else if (type == MD5) {
+            MD5Util.md5(dataBytes)
+        } else if (type == SHA_1) {
+            SHAUtil.sha1(dataBytes)
+        } else if (type == SHA_224) {
             SHAUtil.sha224(dataBytes)
         } else if (type == SHA_256) {
             SHAUtil.sha256(dataBytes)
@@ -109,7 +122,7 @@ object ShaAlgorithmActivity {
         } else if (type == SHA_512) {
             SHAUtil.sha512(dataBytes)
         } else {
-            SHAUtil.sha1(dataBytes)
+            MD5Util.md2(dataBytes)
         }
         if (result != null) {
             val hexString = ByteUtil.bytes2HexString(result)
