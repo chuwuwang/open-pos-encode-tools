@@ -18,9 +18,8 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.pos.encode.ui.Sidebar
-import com.pos.encode.ui.encrypt.DESView
+import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.pos.encode.ui.encrypt.HashAlgorithmActivity
-import com.pos.encode.ui.encrypt.aesView
 import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.seaTheme
 
@@ -41,12 +40,10 @@ fun app() {
 
 @Composable
 private fun switchPage(index: MutableState<Int>, modifier: Modifier) {
-    if (index.value == Sidebar.MENU_AES) {
-        aesView(modifier)
-    } else if (index.value == Sidebar.MENU_HASH_ALGORITHM) {
+    if (index.value == Sidebar.MENU_HASH_ALGORITHM) {
         HashAlgorithmActivity.preview(modifier)
-    } else if (index.value == Sidebar.MENU_DES) {
-        DESView.preview(modifier)
+    } else if (index.value == Sidebar.MENU_ENCRYPTION_ALGORITHM) {
+        EncryptionAlgorithmActivity.preview(modifier)
     }
 }
 

@@ -1,8 +1,6 @@
 package com.pos.encode.ui.encrypt
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -15,13 +13,11 @@ import com.pos.encode.algorithm.SHAUtil
 import com.pos.encode.com.pos.encode.ui.CommonUiUtil
 import com.pos.encode.com.pos.encode.ui.widget.ButtonUtil
 import com.pos.encode.com.pos.encode.ui.widget.InputTextFieldUtil
-import com.pos.encode.com.pos.encode.ui.widget.RadioGroupUtil
 import com.pos.encode.ui.TopBar
 import com.pos.encode.ui.TopBar.topBarItemView
 import com.pos.encode.ui.helper.valid
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.Strings
-import com.pos.encode.ui.widget.ButtonHelper
 import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.util.ByteUtil
 
@@ -50,7 +46,7 @@ object HashAlgorithmActivity {
 
             CommonUiUtil.horizontalDivider()
 
-            showInputDataFormatView(formatterText)
+            CommonUiUtil.showInputDataFormatView(formatterText)
 
             CommonUiUtil.showHintText(Strings.data_input)
             val inputModifier = Modifier.weight(3.0f).padding(start = DP.marginStart, top = DP.paddingTop)
@@ -87,18 +83,6 @@ object HashAlgorithmActivity {
             topBarItemView(Strings.hash_sha_384, SHA_384, algorithmText.value) { algorithmText.value = SHA_384 }
             topBarItemView(Strings.hash_sha_512, SHA_512, algorithmText.value) { algorithmText.value = SHA_512 }
         }
-    }
-
-    @Composable
-    private fun showInputDataFormatView(formatterText: MutableState<String>) {
-        val content = @Composable {
-            val modifier = Modifier.fillMaxWidth().padding(top = ButtonHelper.TEXT_MARGIN_BORDER)
-            Row(modifier) {
-                RadioGroupUtil.radioButton(Strings.data_format_ascii, formatterText.value == Algorithm.ASCII) { formatterText.value = Algorithm.ASCII }
-                RadioGroupUtil.radioButton(Strings.data_format_hexadecimal, formatterText.value == Algorithm.HEXADECIMAL) { formatterText.value = Algorithm.HEXADECIMAL }
-            }
-        }
-        RadioGroupUtil.radioGroup(Strings.data_format, content = content)
     }
 
     private fun sha(type: Int, dataFormatter: String, data: String, outputText: MutableState<String>) {

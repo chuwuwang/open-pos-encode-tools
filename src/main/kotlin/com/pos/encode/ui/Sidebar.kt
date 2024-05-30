@@ -18,16 +18,14 @@ import com.pos.encode.ui.theme.boldFontFamily
 
 object Sidebar {
 
-    const val MENU_AES = 0
-    const val MENU_HASH_ALGORITHM = 1
-    const val MENU_DES = 2
+    const val MENU_HASH_ALGORITHM = 0
+    const val MENU_ENCRYPTION_ALGORITHM = 1
 
     @Composable
     fun showSidebar(modifier: Modifier, index: Int, onClick: (Int) -> Unit) {
         Column(modifier) {
-            itemView(Modifier.clickable { onClick(MENU_AES) }, Strings.aes, getColor(index, MENU_AES), resourcePath = "images/ic_ago_aes_black.png",)
-            itemView(Modifier.clickable { onClick(MENU_HASH_ALGORITHM) }, Strings.hash_algorithm, getColor(index, MENU_HASH_ALGORITHM), resourcePath = "images/ic_ago_sha_black.png",)
-            itemView(Modifier.clickable { onClick(MENU_DES) }, Strings.des3des, getColor(index, MENU_DES), resourcePath = "images/ic_ago_des_black.png",)
+            itemView(Modifier.clickable { onClick(MENU_HASH_ALGORITHM) }, Strings.hash_algorithm, getColor(index, MENU_HASH_ALGORITHM), resourcePath = "images/ic_ago_sha_black.png")
+            itemView(Modifier.clickable { onClick(MENU_ENCRYPTION_ALGORITHM) }, Strings.encryption_algorithm, getColor(index, MENU_ENCRYPTION_ALGORITHM), resourcePath = "images/ic_ago_des_black.png")
         }
     }
 

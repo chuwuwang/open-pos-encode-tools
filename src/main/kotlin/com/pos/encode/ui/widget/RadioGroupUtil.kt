@@ -15,44 +15,50 @@ import com.pos.encode.ui.theme.POSTheme
 import com.pos.encode.ui.theme.boldFontFamily
 import com.pos.encode.ui.theme.mediumFontFamily
 import com.pos.encode.ui.widget.ButtonHelper.RADIO_GROUP_HEIGHT
-import com.pos.encode.ui.widget.TextFieldHelper
 
 object RadioGroupUtil {
 
     @Composable
-    fun radioButton(text: String, selected: Boolean, onClick: () -> Unit) {
+    fun showRadioButton(text: String, selected: Boolean, onClick: () -> Unit) {
         Row(modifier = Modifier.width(192.dp).fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
-            RadioButton(
-                onClick = onClick, selected = selected, colors = RadioButtonDefaults.colors(POSTheme.colors.button)
-            )
-            Text(
-                text = text,
-                fontSize = DP.contentSize,
-                fontFamily = mediumFontFamily,
-                color = POSTheme.colors.contentText
-            )
+            val radioButtonColors = RadioButtonDefaults.colors(POSTheme.colors.button)
+            RadioButton(onClick = onClick, selected = selected, colors = radioButtonColors)
+            Text(text = text, fontSize = DP.contentSize, fontFamily = mediumFontFamily, color = POSTheme.colors.contentText)
         }
     }
 
     @Composable
-    fun radioGroup(text: String, height: Dp = RADIO_GROUP_HEIGHT, content: @Composable () -> Unit) {
-        val borderWidth = DP.borderWidth
-        val borderColor = POSTheme.colors.borderChecked
-        Box(modifier = Modifier.fillMaxWidth().padding(DP.marginStart, DP.marginTop, TextFieldHelper.HINT_TEXT_WIDTH, 0.dp).height(height), contentAlignment = Alignment.Center) {
+    fun showRadioGroup(text: String, height: Dp = RADIO_GROUP_HEIGHT, content: @Composable () -> Unit) {
+        val modifier = Modifier.fillMaxWidth().padding(DP.marginStart, DP.marginTop, InputTextFieldUtil.TEXT_LENGTH_WIDTH, 0.dp).height(height)
+        Box(modifier = modifier, contentAlignment = Alignment.Center) {
+            val leftWidth = 24.dp
+            val borderWidth = DP.borderWidth
+            val borderColor = POSTheme.colors.borderChecked
+            // 从上到下绘制 divider
             Column {
+                // top view
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Divider(modifier = Modifier.width(24.dp).height(borderWidth), color = borderColor)
+                    // top left divider
+                    Divider(modifier = Modifier.width(leftWidth).height(borderWidth), color = borderColor)
+                    // hint text
                     Text(modifier = Modifier.padding(4.dp, 0.dp), fontSize = DP.contentSize, color = POSTheme.colors.contentText, text = text, fontFamily = boldFontFamily)
+                    // top right divider
                     Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
                 }
-                val params = Modifier.weight(1.0f)
-                Spacer(params)
+                // 占满空间
+                val spacerModifier = Modifier.weight(1.0f)
+                Spacer(spacerModifier)
+                // bottom divider
                 Divider(modifier = Modifier.fillMaxWidth().height(borderWidth), color = borderColor)
             }
-            Row(modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 0.dp), horizontalArrangement = Arrangement.Start) {
+            // 从左到右绘制 divider
+            Row(modifier = Modifier.padding(top = DP.paddingTop), horizontalArrangement = Arrangement.Start) {
+                // left divider
                 Divider(modifier = Modifier.width(borderWidth).fillMaxHeight(), color = borderColor)
-                val params = Modifier.weight(1.0f)
-                Spacer(params)
+                // 占满空间
+                val spacerModifier = Modifier.weight(1.0f)
+                Spacer(spacerModifier)
+                // right divider
                 Divider(modifier = Modifier.width(borderWidth).fillMaxHeight(), color = borderColor)
             }
             content()

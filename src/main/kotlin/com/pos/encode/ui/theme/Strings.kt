@@ -13,41 +13,6 @@ object Strings {
     val data_format_hexadecimal: String
         get() = "Hexadecimal"
 
-    val aes: String
-        get() = "AES"
-    val aes_128: String
-        get() = "AES-128"
-    val aes_256: String
-        get() = "AES-256"
-
-    val des3des: String
-        get() = "DES/3DES"
-    val des3des_des: String
-        get() = "DES"
-    val des3des_3des: String
-        get() = "3DES"
-
-    val hash_algorithm: String
-        get() = "Hash Algorithm"
-    val hash_md2: String
-        get() = "MD2"
-    val hash_md4: String
-        get() = "MD4"
-    val hash_md5: String
-        get() = "MD5"
-    val hash_sha: String
-        get() = "SHA"
-    val hash_sha_1: String
-        get() = "SHA-1"
-    val hash_sha_224: String
-        get() = "SHA-224"
-    val hash_sha_256: String
-        get() = "SHA-256"
-    val hash_sha_384: String
-        get() = "SHA-384"
-    val hash_sha_512: String
-        get() = "SHA-512"
-
     val mode: String
         get() = "Mode"
     val mode_ECB: String
@@ -79,6 +44,56 @@ object Strings {
         get() = "ISO 10126"
     val padding_ISO10126d2: String
         get() = "ISO 10126-2"
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    val encryption_algorithm: String
+        get() = "Encryption Algorithm"
+    val aes: String
+        get() = "AES"
+    val aes_128: String
+        get() = "AES-128"
+    val aes_192: String
+        get() = "AES-192"
+    val aes_256: String
+        get() = "AES-256"
+
+    val des3des: String
+        get() = "DES/3DES"
+    val des3des_des: String
+        get() = "DES"
+    val des3des_3des: String
+        get() = "3DES"
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    val hash_algorithm: String
+        get() = "Hash Algorithm"
+
+    val hash_md2: String
+        get() = "MD2"
+    val hash_md4: String
+        get() = "MD4"
+    val hash_md5: String
+        get() = "MD5"
+
+    val hash_sha: String
+        get() = "SHA"
+    val hash_sha_1: String
+        get() = "SHA-1"
+    val hash_sha_224: String
+        get() = "SHA-224"
+    val hash_sha_256: String
+        get() = "SHA-256"
+    val hash_sha_384: String
+        get() = "SHA-384"
+    val hash_sha_512: String
+        get() = "SHA-512"
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     val ok: String
         get() = "OK"
