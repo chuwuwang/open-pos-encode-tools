@@ -17,7 +17,8 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import com.pos.encode.ui.Sidebar
+import com.pos.encode.com.pos.encode.ui.home.Sidebar
+import com.pos.encode.com.pos.encode.ui.home.showSidebar
 import com.pos.encode.ui.encrypt.EncryptionAlgorithmActivity
 import com.pos.encode.ui.encrypt.HashAlgorithmActivity
 import com.pos.encode.ui.theme.POSTheme
@@ -30,20 +31,23 @@ fun app() {
     seaTheme {
         Row {
             val onSidebarClick: (Int) -> Unit = { current.value = it }
-            Sidebar.showSidebar(Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.sidebarBackground), current.value, onSidebarClick)
+            val modifierSidebar = Modifier.weight(1f).fillMaxHeight().background(POSTheme.colors.sidebarBackground)
+            showSidebar(modifierSidebar, current.value, onSidebarClick)
 
-            val rightModifier = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.contentBackground)
-            BoxWithConstraints(modifier = rightModifier) { switchPage(current, rightModifier) }
+            val modifierContent = Modifier.weight(3f).fillMaxHeight().background(POSTheme.colors.contentBackground)
+            BoxWithConstraints(modifierContent) { switchScreen(current, modifierContent) }
         }
     }
 }
 
 @Composable
-private fun switchPage(index: MutableState<Int>, modifier: Modifier) {
+private fun switchScreen(index: MutableState<Int>, modifier: Modifier) {
     if (index.value == Sidebar.MENU_HASH_ALGORITHM) {
         HashAlgorithmActivity.preview(modifier)
     } else if (index.value == Sidebar.MENU_ENCRYPTION_ALGORITHM) {
         EncryptionAlgorithmActivity.preview(modifier)
+    } else if (index.value == Sidebar.MENU_ISO8583_BITMAP) {
+
     }
 }
 
