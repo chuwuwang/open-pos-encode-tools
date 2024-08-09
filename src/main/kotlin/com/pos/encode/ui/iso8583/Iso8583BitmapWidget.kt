@@ -2,6 +2,7 @@ package com.pos.encode.com.pos.encode.ui.iso8583
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
@@ -22,20 +23,11 @@ import com.pos.encode.com.pos.encode.ui.widget.errorButton
 import com.pos.encode.com.pos.encode.ui.widget.horizontal
 import com.pos.encode.ui.theme.DP
 import com.pos.encode.ui.theme.POSTheme
+import com.pos.encode.ui.theme.Strings
 import com.pos.encode.ui.theme.mediumFontFamily
+import com.pos.encode.ui.widget.DialogHelper
 import com.pos.encode.ui.widget.TextFieldHelper
 import com.pos.encode.util.ByteUtil
-
-object Iso8583BitmapWidget {
-
-    private val BITMAP = arrayOf(
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
-        "7", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
-        "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
-        "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64",
-    )
-
-}
 
 @Composable
 fun parserIso8583Bitmap(modifier: Modifier) {
@@ -45,6 +37,8 @@ fun parserIso8583Bitmap(modifier: Modifier) {
         val binaryBytes = ByteUtil.bytes2BinaryBytes(bitmapBytes)
         mutableStateOf(binaryBytes)
     }
+    val dialogVisible = remember { mutableStateOf(false) }
+    val maxBitmapLength = remember { mutableStateOf(bitmapString.value.length) }
 
     Column(modifier) {
         val modifierBitmap = Modifier.fillMaxWidth()
@@ -52,39 +46,81 @@ fun parserIso8583Bitmap(modifier: Modifier) {
             .border(DP.dividerHeight, POSTheme.colors.divider, CommonUiUtil.roundedCornerShapeWith8)
         val columns = GridCells.Fixed(16)
         LazyVerticalGrid(columns, modifier = modifierBitmap) {
-            val itemContent: @Composable (LazyGridItemScope.(Int) -> Unit) = { index ->
-                val text = (index + 1).toString()
-                val flag = bitmapBooleans.value[index]
+            val itemContent: @Composable (LazyGridItemScope.(Int) -> Unit) = { i ->
+                val index = i + 1
+                val onItemClick = {
+                    val bitmapBytes = getDynamicBitmap(index, bitmapBooleans.value)
+                    bitmapString.value = ByteUtil.bytes2HexString(bitmapBytes)
+                    bitmapBooleans.value = ByteUtil.bytes2BinaryBytes(bitmapBytes)
+                    maxBitmapLength.value = bitmapString.value.length
+                }
                 Column {
-                    println(flag)
-                    val modifierItem = if (flag) {
+                    val selected = bitmapBooleans.value[index]
+                    val modifierItem = if (selected) {
                         Modifier.height(56.dp).background(POSTheme.colors.borderChecked)
                     } else {
                         Modifier.height(56.dp)
                     }
-                    Row(modifierItem, verticalAlignment = Alignment.CenterVertically) { bind(text, index) }
-                    val first = bitmapBooleans.value[1]
-                    if (first == false) {
-                        CommonUiUtil.horizontalDivider()
-                    } else if (index != 112 && index != 127) {
-                        CommonUiUtil.horizontalDivider()
+                    Row(modifierItem.clickable(onClick = onItemClick), verticalAlignment = Alignment.CenterVertically) { bind("$index", index) }
+                    val bit128 = bitmapBooleans.value[1]
+                    if (bit128) {
+                        if (index in 1..112) CommonUiUtil.horizontalDivider()
+                    } else {
+                        if (index in 1..48) CommonUiUtil.horizontalDivider()
                     }
                 }
             }
             items(bitmapBooleans.value.size - 1, itemContent = itemContent)
         }
 
-        TextFieldHelper.inputTextField(Modifier.padding(top = DP.marginTop).height(72.dp), "Bitmap", bitmapString.value, bitmapString.value.length) { bitmapString.value = it }
+        TextFieldHelper.inputTextField(Modifier.padding(top = DP.marginTop).height(72.dp), "Bitmap", bitmapString.value, maxBitmapLength.value) { bitmapString.value = it }
 
         val modifierRow = Modifier.padding(DP.marginTop)
         Row(modifierRow) {
-            decryptButton {
-                val bitmapBytes = ByteUtil.hexString2Bytes(bitmapString.value)
+            val reset = {
+                val bitmapBytes = getInitializeBitmap()
+                bitmapString.value = ByteUtil.bytes2HexString(bitmapBytes)
                 bitmapBooleans.value = ByteUtil.bytes2BinaryBytes(bitmapBytes)
+                maxBitmapLength.value = bitmapString.value.length
             }
+            val decrypt = {
+                val length = bitmapString.value.length
+                if (length != 16 && length != 32) {
+                    dialogVisible.value = true
+                } else {
+                    dialogVisible.value = false
+                    val bitmapBytes = ByteUtil.hexString2Bytes(bitmapString.value)
+                    bitmapBooleans.value = ByteUtil.bytes2BinaryBytes(bitmapBytes)
+                    maxBitmapLength.value = bitmapString.value.length
+                }
+            }
+            decryptButton { decrypt() }
             horizontal(16.dp)
-            errorButton("RESET") {}
+            errorButton("RESET") { reset() }
         }
+
+        DialogHelper.errorDialog("The size of the Bitmap can only be 16 or 32", dialogVisible)
+    }
+}
+
+private fun getInitializeBitmap():ByteArray {
+   return ByteUtil.hexString2Bytes("0000000000000000")
+}
+
+private fun getDynamicBitmap(index: Int, booleans: BooleanArray): ByteArray {
+    val item = booleans[index]
+    booleans[index] = !item
+    if (index != 1) return ByteUtil.binaryBytes2Bytes(booleans)
+    if (item) {
+        val temp = ByteArray(8)
+        val oldBytes = ByteUtil.binaryBytes2Bytes(booleans)
+        System.arraycopy(oldBytes, 0, temp, 0, temp.size)
+        return temp
+    } else {
+        val temp = ByteArray(16)
+        val oldBytes = ByteUtil.binaryBytes2Bytes(booleans)
+        System.arraycopy(oldBytes, 0, temp, 0, oldBytes.size)
+        return temp
     }
 }
 
@@ -92,7 +128,7 @@ fun parserIso8583Bitmap(modifier: Modifier) {
 private fun RowScope.bind(text: String, position: Int) {
     val textStyle = TextStyle(color = POSTheme.colors.textSecondary, fontFamily = mediumFontFamily, fontSize = DP.titleSize, textAlign = TextAlign.Center)
     Text(text, modifier = Modifier.wrapContentHeight(Alignment.CenterVertically).weight(1f), style = textStyle)
-    if (position != 15 && position != 127) {
+    if (position != 16 && position != 32 && position != 48 && position != 64 && position != 80 && position != 96 && position != 112 && position != 128) {
         Divider(modifier = Modifier.fillMaxHeight().width(DP.dividerHeight), color = POSTheme.colors.divider)
     }
 }
