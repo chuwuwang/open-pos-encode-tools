@@ -26,6 +26,11 @@ val descriptionColor = Color(0xFF999999)
 
 val white_color_f5f5f5 = Color(0xFFF5F5F5)
 
+val text_main =  Color(0xFF2A2B2F)
+val text_error =  Color(0xFFEC5447)
+val text_secondary =  Color(0xFF80868B)
+
+
 object WeColor {
     val green = Color(0xFF1AB84E).convert(ColorSpaces.CieXyz)
     val black = Color(0xFF2E2E2E).convert(ColorSpaces.CieXyz)

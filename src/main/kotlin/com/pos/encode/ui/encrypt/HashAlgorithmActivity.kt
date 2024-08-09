@@ -65,7 +65,7 @@ object HashAlgorithmActivity {
                 }
             }
             val buttonModifier = Modifier.padding(DP.marginStart, DP.marginTop, DP.marginEnd, DP.marginBottom)
-            ButtonUtil.showEncryptButton(buttonModifier, onButtonClickListener)
+            ButtonUtil.encryptButton(buttonModifier, onButtonClickListener)
 
             DialogHelper.errorDialog(Strings.error_data, visibleDialog)
         }

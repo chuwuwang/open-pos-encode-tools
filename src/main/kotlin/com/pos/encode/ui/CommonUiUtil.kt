@@ -3,12 +3,14 @@ package com.pos.encode.com.pos.encode.ui
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.pos.encode.Algorithm
 import com.pos.encode.com.pos.encode.ui.widget.RadioGroupUtil
 import com.pos.encode.ui.theme.DP
@@ -55,5 +57,11 @@ object CommonUiUtil {
     fun horizontalDivider() {
         Divider(thickness = DP.dividerHeight, color = POSTheme.colors.divider)
     }
+
+    val roundedCornerShapeWith4: RoundedCornerShape
+        get() = RoundedCornerShape(4.dp)
+
+    val roundedCornerShapeWith8: RoundedCornerShape
+        get() = RoundedCornerShape(8.dp)
 
 }

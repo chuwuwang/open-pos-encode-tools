@@ -38,8 +38,13 @@ class POSColors(
 
     val icon: Color,
     val iconChecked: Color,
+
     val contentText: Color,
     val contentBackground: Color,
+
+    val textMain: Color,
+    val textSecondary: Color,
+
     val border: Color,
     val borderError: Color,
     val borderChecked: Color,
@@ -60,8 +65,13 @@ private val WeChat = POSColors(
     topBarDividerChecked = WeColor.green,
     icon = whiteColor,
     iconChecked = WeColor.green,
+
     contentText = WeColor.black,
     contentBackground = whiteColor,
+
+    textMain = text_main,
+    textSecondary = text_secondary,
+
     border = WeColor.gray,
     borderError = WeColor.danger,
     borderChecked = WeColor.success,
@@ -89,8 +99,12 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
     val topBarDividerChecked = animateColorAsState(targetColors.topBarDividerChecked, animationSpec)
     val icon = animateColorAsState(targetColors.icon, animationSpec)
     val iconChecked = animateColorAsState(targetColors.iconChecked, animationSpec)
+
     val contentText = animateColorAsState(targetColors.contentText, animationSpec)
     val contentBackground = animateColorAsState(targetColors.contentBackground, animationSpec)
+    val textMain = animateColorAsState(targetColors.textMain, animationSpec)
+    val textSecondary = animateColorAsState(targetColors.textSecondary, animationSpec)
+
     val border = animateColorAsState(targetColors.border, animationSpec)
     val borderError = animateColorAsState(targetColors.borderError, animationSpec)
     val borderChecked = animateColorAsState(targetColors.borderChecked, animationSpec)
@@ -109,8 +123,13 @@ fun seaTheme(theme: POSTheme.Theme = POSTheme.Theme.WeChat, content: @Composable
         topBarDividerChecked = topBarDividerChecked.value,
         icon = icon.value,
         iconChecked = iconChecked.value,
+
         contentText = contentText.value,
         contentBackground = contentBackground.value,
+
+        textMain = textMain.value,
+        textSecondary = textSecondary.value,
+
         border = border.value,
         borderError = borderError.value,
         borderChecked = borderChecked.value,
